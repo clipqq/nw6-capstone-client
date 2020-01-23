@@ -1,15 +1,15 @@
 import React, { Component } from 'react';
 
-class Landing extends Component {
+class EditGraph extends Component {
 
     render() {
 
         return (
             <>        
-                <h1>Landing</h1>
+                <h1>EditGraph</h1>
             </>
         );
     }
 }
 
-export default Landing;
+export default EditGraph;

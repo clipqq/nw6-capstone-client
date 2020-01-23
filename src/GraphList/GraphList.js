@@ -1,15 +1,15 @@
 import React, { Component } from 'react';
 
-class Landing extends Component {
+class GraphList extends Component {
 
     render() {
 
         return (
             <>        
-                <h1>Landing</h1>
+                <h1>GraphList</h1>
             </>
         );
     }
 }
 
-export default Landing;
+export default GraphList;
