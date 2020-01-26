@@ -1,6 +1,7 @@
 import React from 'react';
 import { Route } from 'react-router-dom';
 import Header from './Header/Header'
+import Footer from './Footer/Footer'
 import ErrorBoundry from './ErrorBoundry/ErrorBoundry';
 import Landing from './Landing/Landing'
 import AddGraph from './AddGraph/AddGraph'
@@ -28,6 +29,9 @@ function App() {
           <Route exact path='/login' component={Login} />
         </main>
       </ErrorBoundry>
+      <footer className="App-footer">
+      <Route path='/' component={Footer} />
+    </footer>
     </div>
   );
 }
