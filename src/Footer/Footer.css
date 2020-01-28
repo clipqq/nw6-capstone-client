@@ -1,7 +1,4 @@
 .footer {
-    position: fixed;
-    left: 0;
-    bottom: 0;
     width: 100%;
     background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
         url(../img/Liquid-pattern-11.jpg);
@@ -9,30 +6,22 @@
     height: 50px;
     display: flex;
     flex-direction: row;
-    align-items: center;
     justify-content: space-between;
-    font-size: calc(10px + 2vmin);
-    color: rgb(201, 201, 201);
-    color: white;
-    text-align: center;
-    font-family: neb;
 }
 .copywriter{
     padding-top:30px;
-    padding-right:5px;
-    font-size:0.35em;
+    padding-left:8px;
+    font-size:0.55em;
+    color: white;
+    font-family: neb;
 } 
 .icons a{
 	display: inline-block;
 	width: 35px;
-	height: 35px;
 	cursor: pointer;
-	border-radius: 2px;
-	font-size: 20px;
+	font-size: 25px;
 	color: #ffffff;
-	text-align: center;
 	line-height: 35px;
-	margin-right: 3px;
-    margin-bottom: 5px;
-    margin-top: 25px;
+	margin-right: 5px;
+    margin-top: 10px;
 }
