@@ -1,0 +1,75 @@
+h1 {
+    font-family: neb;
+    margin-left: 10px;
+    font-size: 50px;
+}
+
+.App-header {
+    background-image: 
+      linear-gradient(
+        rgba(0, 0, 0, 0.70), 
+        rgba(0, 0, 0, 0.70)
+      ),
+      url(../img/Liquid-pattern-11.jpg);
+    background-size: 300px;
+    height: 80px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+    justify-content: space-between;
+    font-size: calc(10px + 2vmin);
+    color: rgb(201, 201, 201);
+}
+
+button {
+    background-color: rgb(0, 0, 0); /* Green */
+    border: solid 1px rgb(163, 163, 163);
+    color: white;
+    padding: 3px 8px;
+    text-align: center;
+    font-size: 16px;
+    margin: 5px;
+    -webkit-transition-duration: 0.4s; /* Safari */
+    transition-duration: 0.4s;
+    cursor: pointer;
+    box-shadow: 1px 1px 5px #1f1f1f;
+    border-radius: 5px;
+}
+
+button:hover {
+    background-color: rgb(75, 75, 75);
+    color: rgb(255, 255, 255);
+    box-shadow: 2px 2px 5px #666666;
+}
+
+button:active {
+    background-color: rgb(131, 131, 131);
+    box-shadow: 2px 2px 5px #a0a0a0;
+    transform: translateY(2px);
+}
+
+.logo {
+    text-decoration: none;
+    color: inherit;
+}
+
+h1:hover {
+    color: rgb(46, 46, 46);
+    text-shadow: 2px 2px 5px #3f3f3f;
+    transition-duration: 0.4s;
+    -webkit-text-stroke: 1px rgb(255, 255, 255);
+}
+
+
+.logo:active {
+    color: rgb(131, 131, 131);
+    text-shadow: 2px 2px 5px #a0a0a0;
+    transform: translateY(1px);
+}
+
+
+@font-face {
+    font-family: neb;
+    src: url(../fonts/Nebula-Regular.ttf);
+}
