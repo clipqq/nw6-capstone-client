@@ -30,8 +30,8 @@ function App() {
         </main>
       </ErrorBoundry>
       <footer className="App-footer">
-      <Route path='/' component={Footer} />
-    </footer>
+        <Route path='/' component={Footer} />
+      </footer>
     </div>
   );
 
