@@ -17,9 +17,9 @@ class Login extends Component {
     updatePassword(password) {
         this.setState({password: password});
     }
+    
 
     render() {
-
         return (
             <div className="login">        
                 <h1>Login</h1>

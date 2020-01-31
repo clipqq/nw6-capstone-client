@@ -11,12 +11,12 @@ class Footer extends Component {
         return (
             <>   
             <div className="footer">  
-                <p class="copywriter">&copy; 2020 WTDD</p>
+                <p className="copywriter">&copy; 2020 WTDD</p>
                 
                 <div className="icons">
-                    <a href="https://www.facebook.com" target="_blank" rel="noopener noreferrer" ><i class="fa"></i><FaFacebook/></a>
-                    <a href="google.com"><i class="fa"  target="_blank" rel="noopener noreferrer"></i><IoLogoTwitter/></a>
-                    <a href="google.com"><i class="fa"  target="_blank" rel="noopener noreferrer"></i><FaInstagram/></a>
+                    <a href="https://www.facebook.com" target="_blank" rel="noopener noreferrer" ><i className="fa"></i><FaFacebook/></a>
+                    <a href="google.com"><i className="fa"  target="_blank" rel="noopener noreferrer"></i><IoLogoTwitter/></a>
+                    <a href="google.com"><i className="fa"  target="_blank" rel="noopener noreferrer"></i><FaInstagram/></a>
                 </div>
             </div>
             </>
