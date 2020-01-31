@@ -24,10 +24,10 @@ class Login extends Component {
             <div className="login">        
                 <h1>Login</h1>
                 <div className="form-group">
-                    <label htmlFor="email">Email:</label>
-                    <input required type="email" name="email" id="email" value={ this.state.email } onChange={e => this.updateEmail(e.target.value)}/>
-                    <label htmlFor="password">Password:</label>
-                    <input required type="text" name="password" id="password" value={ this.state.password } onChange={e => this.updatePassword(e.target.value)}/>
+                    <label htmlFor="email">Email</label>
+                    <input required type="email" name="email" id="email" placeholder="Email@url.com" value={ this.state.email } onChange={e => this.updateEmail(e.target.value)}/>
+                    <label htmlFor="password">Password</label>
+                    <input required type="text" name="password" id="password" placeholder="Password" value={ this.state.password } onChange={e => this.updatePassword(e.target.value)}/>
                     <div className="buttons">
                         <button type="submit">
                             Login

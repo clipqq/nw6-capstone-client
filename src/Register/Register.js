@@ -30,14 +30,14 @@ class Register extends Component {
             <div className="login">        
                 <h1>Register</h1>
                 <div className="form-group">
-                    <label htmlFor="email">Email:</label>
-                    <input required type="email" name="email" id="email" value={ this.state.email } onChange={e => this.updateEmail(e.target.value)}/>
-                    <label htmlFor="name">Name:</label>
-                    <input required type="name" name="name" id="name" value={ this.state.name } onChange={e => this.updateName(e.target.value)}/>
-                    <label htmlFor="password">Password:</label>
-                    <input required type="text" name="password" id="password" value={ this.state.password } onChange={e => this.updatePassword(e.target.value)}/>
-                    <label htmlFor="confirm_password">Confirm Password:</label>
-                    <input required type="text" name="confirm_password" id="confirm_password" value={ this.state.confirm_password } onChange={e => this.updateConfirmPassword(e.target.value)}/>
+                    <label htmlFor="email">Email</label>
+                    <input required type="email" name="email" id="email" placeholder="Email@url.com" value={ this.state.email } onChange={e => this.updateEmail(e.target.value)}/>
+                    <label htmlFor="name">UserName</label>
+                    <input required type="name" name="name" id="name" placeholder="UserName" value={ this.state.name } onChange={e => this.updateName(e.target.value)}/>
+                    <label htmlFor="password">Password</label>
+                    <input required type="text" name="password" id="password" placeholder="Password" value={ this.state.password } onChange={e => this.updatePassword(e.target.value)}/>
+                    <label htmlFor="confirm_password">Confirm Password</label>
+                    <input required type="text" name="confirm_password" id="confirm_password" placeholder="Password" value={ this.state.confirm_password } onChange={e => this.updateConfirmPassword(e.target.value)}/>
                     <div className="buttons">
                         <button type="submit">
                             Register

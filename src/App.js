@@ -19,7 +19,7 @@ function App() {
         <Route path='/' component={Header} />
       </header>
       <ErrorBoundry>
-        <main>
+        <main className="container">
           <Route exact path='/' component={Landing} />
           <Route exact path='/graph' component={GraphList} />
           <Route exact path='/graph/:graph_id' component={Graph} />
