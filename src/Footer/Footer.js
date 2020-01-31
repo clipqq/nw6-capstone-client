@@ -14,9 +14,9 @@ class Footer extends Component {
                 <p className="copywriter">&copy; 2020 WTDD</p>
                 
                 <div className="icons">
-                    <a href="https://www.facebook.com" target="_blank" rel="noopener noreferrer" ><i className="fa"></i><FaFacebook/></a>
-                    <a href="google.com"><i className="fa"  target="_blank" rel="noopener noreferrer"></i><IoLogoTwitter/></a>
-                    <a href="google.com"><i className="fa"  target="_blank" rel="noopener noreferrer"></i><FaInstagram/></a>
+                    <a href="https://www.facebook.com" target="_blank" rel="noopener noreferrer" ><i ></i><FaFacebook/></a>
+                    <a href="google.com"><i target="_blank" rel="noopener noreferrer"></i><IoLogoTwitter/></a>
+                    <a href="google.com"><i target="_blank" rel="noopener noreferrer"></i><FaInstagram/></a>
                 </div>
             </div>
             </>
