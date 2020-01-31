@@ -12,10 +12,7 @@ class Register extends Component {
             user_name:'',
             confirm_password: ''
         }
-        // this.updateEmail=this.updateEmail.bind(this)
-        // this.updateName=this.updateName.bind(this)
-        // this.updatePassword=this.updatePassword.bind(this)
-        // this.confirmPassword=this.confirmPassword.bind(this)
+       
     }
 
     updateEmail(user_email) {
