@@ -4,14 +4,14 @@ import ReactFileReader from 'react-file-reader'
 const csv = require('csvtojson')
 const { API_ENDPOINT } = require('../config')
 
-
 class AddGraph extends Component {
     constructor(props) {
         super(props);
         this.state = {
             title: '',
-            data: ''
+            data: []
         }
+        this.updateData = this.updateData.bind(this);
     }
 
     updateTitle(title) {
@@ -28,24 +28,23 @@ class AddGraph extends Component {
     //     this.addGraph(this.state.data, this.state.title)
     // }
 
-    handleFiles = files => {
+
+    handleFiles(files) {
         var reader = new FileReader();
-        let dataStr = ''
         reader.onload = function(e) {
             const csvStr = reader.result
             csv()
                 .fromString(csvStr)
-                .then((jsonObj)=>{
-                    console.log(JSON.stringify(jsonObj));
-                    dataStr = JSON.stringify(jsonObj)
-                    
-                    
-                })
-            return dataStr
-        }
-        this.updateData(dataStr)
+                .then((jsonObj) => {
+                        console.log(jsonObj);
+                        // this.setState({data: jsonObj})
+                        this.updateData(jsonObj)
+                    })
+            }
         reader.readAsText(files[0]);
     }
+
+
 
     addGraph(data, title, cb) {
         console.log('add')
