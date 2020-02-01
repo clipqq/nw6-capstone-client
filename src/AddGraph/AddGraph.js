@@ -23,25 +23,18 @@ class AddGraph extends Component {
         this.setState({data: data})
     }
 
-    // handleSubmit(e) {
-    //     e.preventDefault();
-    //     this.addGraph(this.state.data, this.state.title)
-    // }
+    handleSubmit(e) {
+        e.preventDefault();
+        this.addGraph(this.state.data, this.state.title)
+    }
 
 
-    // handleFiles(files) {
-    //     var reader = new FileReader();
-    //     reader.onload = function(e) {
-    //         const csvStr = reader.result
-    //         csv()
-    //             .fromString(csvStr)
-    //             .then((jsonObj) => {
-    //                     console.log(jsonObj);
-    //                     // this.setState({data: jsonObj})
-    //                     this.updateData(jsonObj)
-    //                 })
-    //         }
-    //     reader.readAsText(files[0]);
+    // function (){
+    //     this.doFetch().then(function(response){
+    //         this.setState({
+    //             the_message: response.message
+    //         });
+    //     }.bind(this))
     // }
 
 
@@ -53,10 +46,10 @@ class AddGraph extends Component {
                 .fromString(csvStr)
                 .then((jsonObj) => {
                         console.log(jsonObj);
-                        // this.setState({data: jsonObj})
-                        this.updateData(jsonObj)
+                        this.setState({data: jsonObj})
+                        console.log(this.state)
                     })
-            }
+            }.bind(this)
         reader.readAsText(files[0]);
     }
 
