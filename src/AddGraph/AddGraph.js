@@ -29,8 +29,24 @@ class AddGraph extends Component {
     // }
 
 
-    handleFiles(files) {
-        var reader = new FileReader();
+    // handleFiles(files) {
+    //     var reader = new FileReader();
+    //     reader.onload = function(e) {
+    //         const csvStr = reader.result
+    //         csv()
+    //             .fromString(csvStr)
+    //             .then((jsonObj) => {
+    //                     console.log(jsonObj);
+    //                     // this.setState({data: jsonObj})
+    //                     this.updateData(jsonObj)
+    //                 })
+    //         }
+    //     reader.readAsText(files[0]);
+    // }
+
+
+    handleFiles = async (files) => {
+        let reader = new FileReader();
         reader.onload = function(e) {
             const csvStr = reader.result
             csv()
@@ -44,6 +60,17 @@ class AddGraph extends Component {
         reader.readAsText(files[0]);
     }
 
+    // onSearchSubmit = async (term) => {
+    //     const response = await axios
+    //       .get('https://api.unsplash.com/search/photos', {
+    //         params: { query: term },
+    //         headers: {
+    //         Authorization: 'Client-ID'
+    //       }
+    //     })
+    //   this.setState({ images: response.data.results });
+    //   console.log('App this : ', this)
+    //   }
 
 
     addGraph(data, title, cb) {
