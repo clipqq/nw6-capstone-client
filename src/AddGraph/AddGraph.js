@@ -38,19 +38,7 @@ class AddGraph extends Component {
     //     }.bind(this))
     // }
 
-<<<<<<< HEAD
-    handleFiles(files) {
-        var reader = new FileReader()
-        reader.onload = function(e) {
-            const csvStr = reader.result
-            csv()
-            .fromString(csvStr)
-            .then((jsonObj) => {
-                    console.log(jsonObj)
-                    // this.setState({data: jsonObj})
-             })
-            }
-=======
+
 
     handleFiles = async (files) => {
         let reader = new FileReader();
@@ -64,7 +52,6 @@ class AddGraph extends Component {
                         console.log(this.state)
                     })
             }.bind(this)
->>>>>>> f44c2305b599d52525361f094378b50f2545e96a
         reader.readAsText(files[0]);
     }
 
