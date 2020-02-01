@@ -12,6 +12,7 @@ class AddGraph extends Component {
             data: []
         }
         this.updateData = this.updateData.bind(this);
+
     }
 
     updateTitle(title) {
@@ -28,18 +29,16 @@ class AddGraph extends Component {
     //     this.addGraph(this.state.data, this.state.title)
     // }
 
-
     handleFiles(files) {
-        var reader = new FileReader();
+        var reader = new FileReader()
         reader.onload = function(e) {
             const csvStr = reader.result
             csv()
-                .fromString(csvStr)
-                .then((jsonObj) => {
-                        console.log(jsonObj);
-                        // this.setState({data: jsonObj})
-                        this.updateData(jsonObj)
-                    })
+            .fromString(csvStr)
+            .then((jsonObj) => {
+                    console.log(jsonObj)
+                    // this.setState({data: jsonObj})
+             })
             }
         reader.readAsText(files[0]);
     }
