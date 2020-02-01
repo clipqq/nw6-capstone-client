@@ -24,11 +24,21 @@ class AddGraph extends Component {
         this.setState({data: data})
     }
 
-    // handleSubmit(e) {
-    //     e.preventDefault();
-    //     this.addGraph(this.state.data, this.state.title)
+    handleSubmit(e) {
+        e.preventDefault();
+        this.addGraph(this.state.data, this.state.title)
+    }
+
+
+    // function (){
+    //     this.doFetch().then(function(response){
+    //         this.setState({
+    //             the_message: response.message
+    //         });
+    //     }.bind(this))
     // }
 
+<<<<<<< HEAD
     handleFiles(files) {
         var reader = new FileReader()
         reader.onload = function(e) {
@@ -40,9 +50,35 @@ class AddGraph extends Component {
                     // this.setState({data: jsonObj})
              })
             }
+=======
+
+    handleFiles = async (files) => {
+        let reader = new FileReader();
+        reader.onload = function(e) {
+            const csvStr = reader.result
+            csv()
+                .fromString(csvStr)
+                .then((jsonObj) => {
+                        console.log(jsonObj);
+                        this.setState({data: jsonObj})
+                        console.log(this.state)
+                    })
+            }.bind(this)
+>>>>>>> f44c2305b599d52525361f094378b50f2545e96a
         reader.readAsText(files[0]);
     }
 
+    // onSearchSubmit = async (term) => {
+    //     const response = await axios
+    //       .get('https://api.unsplash.com/search/photos', {
+    //         params: { query: term },
+    //         headers: {
+    //         Authorization: 'Client-ID'
+    //       }
+    //     })
+    //   this.setState({ images: response.data.results });
+    //   console.log('App this : ', this)
+    //   }
 
 
     addGraph(data, title, cb) {
