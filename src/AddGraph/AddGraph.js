@@ -70,7 +70,7 @@ class AddGraph extends Component {
 
     addGraph(data, title, cb) {
         console.log('add')
-        fetch(`${API_ENDPOINT}`, {
+        fetch(`${API_ENDPOINT}data`, {
             method: 'POST',
             body: data,
             headers: {
