@@ -1,23 +1,71 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom'
 import './Login.css'
+import config from '../config'
 
 class Login extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            email: '',
-            password: ''
+            user_email: '',
+            password: '',
+            user_name:'',
+            error: ''
+
         }
+        
+        this.login=this.login.bind(this)
     }
 
-    updateEmail(email) {
-        this.setState({email: email});
+    updateName(user_name) {
+        this.setState({user_name: user_name});
+    }
+
+    updateEmail(user_email) {
+        this.setState({user_email: user_email});
     }
     updatePassword(password) {
         this.setState({password: password});
     }
-    
+    login(e){
+        console.log(this.state.user_name,'USERNAME')
+        e.preventDefault();
+        if(this.state.email==='' || this.state.password===''){
+            this.setState({error: "Please add password and email"})
+            return
+        }
+        const headers = new Headers ();
+        headers.append('Content-Type', 'application/json');
+        const options = {
+            method: 'POST',
+            headers,
+            body: JSON.stringify({
+                user_name:this.state.user_name,
+                user_email:this.state.user_email,
+                password: this.state.password,
+            }),
+        };
+        const request = new Request (`${config.API_ENDPOINT}/auth/login`, options)
+        fetch(request)
+        .then(res=>{
+            if(!res.ok){
+                throw res
+            }
+            return res.json()
+        })
+        .then(data => { 
+
+            localStorage.setItem("authToken", data.authToken)
+            this.props.history.push('/saved')
+         })
+         .catch(err => {
+            if(err.status===400){
+                this.setState({error: "Incorrect username or password"})
+            }
+            })
+
+    }
+
 
     render() {
         return (
@@ -29,7 +77,7 @@ class Login extends Component {
                     <label htmlFor="password">Password</label>
                     <input required type="text" name="password" id="password" placeholder="Password" value={ this.state.password } onChange={e => this.updatePassword(e.target.value)}/>
                     <div className="buttons">
-                        <button type="submit">
+                        <button  onClick={this.login}type="submit">
                             Login
                         </button>
                         <Link to='/'>
