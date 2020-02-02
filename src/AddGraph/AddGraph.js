@@ -29,13 +29,7 @@ class AddGraph extends Component {
     }
 
 
-    // function (){
-    //     this.doFetch().then(function(response){
-    //         this.setState({
-    //             the_message: response.message
-    //         });
-    //     }.bind(this))
-    // }
+
 
 
     handleFiles = async (files) => {

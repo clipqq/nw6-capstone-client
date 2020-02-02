@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 
 import LineGraph from '../GraphTemplates/LineGraph'
 import ScatterAnimation from '../GraphTemplates/ScatterAnimation'
-import ZoomableChart from '../GraphTemplates/zoomChart'
+import ZoomableChart from '../GraphTemplates/ZoomChart'
 
 
 const API_URL = 'https://nataliia-radina.github.io/react-vis-example/'
