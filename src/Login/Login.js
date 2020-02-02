@@ -27,7 +27,6 @@ class Login extends Component {
     updatePassword(password) {
         this.setState({password: password});
     }
-<<<<<<< HEAD
     login(e){
         console.log(this.state.user_name,'USERNAME')
         e.preventDefault();
@@ -67,23 +66,20 @@ class Login extends Component {
 
     }
 
-=======
-    
->>>>>>> 2587543dbbf7368ee6d332e020695654120da4ff
 
     render() {
         return (
             <div className="login">        
                 <h1>Login</h1>
                 <div className="form-group">
-                <label htmlFor="email">UserName:</label>
+                <label htmlFor="email">User Name:</label>
                     <input required type="text" name="user_name" id="user_name" value={ this.state.user_name } onChange={e => this.updateName(e.target.value)}/>
                     <label htmlFor="email">Email:</label>
                     <input required type="email" name="email" id="email" value={ this.state.user_email } onChange={e => this.updateEmail(e.target.value)}/>
                     <label htmlFor="password">Password:</label>
                     <input required type="text" name="password" id="password" value={ this.state.password } onChange={e => this.updatePassword(e.target.value)}/>
                     <div className="buttons">
-                        <button  onClick={this.login}type="submit">
+                        <button  onClick={this.login} type="submit">
                             Login
                         </button>
                         <Link to='/'>

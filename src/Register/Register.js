@@ -68,7 +68,7 @@ class Register extends Component {
                 <div className="form-group">
                     <label htmlFor="email">Email:</label>
                     <input required type="email" name="email" id="email" value={ this.state.user_email } onChange={e => this.updateEmail(e.target.value)}/>
-                    <label htmlFor="name">Name:</label>
+                    <label htmlFor="name">User Name:</label>
                     <input required type="name" name="name" id="name" value={ this.state.user_name } onChange={e => this.updateName(e.target.value)}/>
                     <label htmlFor="password">Password:</label>
                     <input required type="text" name="password" id="password" value={ this.state.password } onChange={e => this.updatePassword(e.target.value)}/>

@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom'
 import ReactFileReader from 'react-file-reader'
+import config from '../config'
+
 const csv = require('csvtojson')
 const { API_ENDPOINT } = require('../config')
 
@@ -48,7 +50,7 @@ class AddGraph extends Component {
 
     addGraph(data, title, cb) {
         console.log('add')
-        fetch(`${API_ENDPOINT}`, {
+        fetch(`${config.API_ENDPOINT}/data`, {
             method: 'POST',
             body: data,
             headers: {
@@ -86,7 +88,7 @@ class AddGraph extends Component {
                             <button className='btn'>Upload</button>
                         </ReactFileReader>
                         <div className="buttons">
-                            <button type="submit" >
+                            <button type="submit" onClick={this.addGraph} >
                                 Create
                             </button>
                             <Link to='/graph'>
