@@ -11,34 +11,16 @@ class AddGraph extends Component {
             title: '',
             data: []
         }
-        this.updateData = this.updateData.bind(this);
-
     }
 
     updateTitle(title) {
         this.setState({title: title});
     }
 
-    updateData(data) {
-        console.log('update')
-        this.setState({data: data})
-    }
-
     handleSubmit(e) {
         e.preventDefault();
         this.addGraph(this.state.data, this.state.title)
     }
-
-
-    // function (){
-    //     this.doFetch().then(function(response){
-    //         this.setState({
-    //             the_message: response.message
-    //         });
-    //     }.bind(this))
-    // }
-
-
 
     handleFiles = async (files) => {
         let reader = new FileReader();
@@ -47,30 +29,15 @@ class AddGraph extends Component {
             csv()
                 .fromString(csvStr)
                 .then((jsonObj) => {
-                        console.log(jsonObj);
-                        this.setState({data: jsonObj})
-                        console.log(this.state)
+                        this.setState({data: JSON.stringify(jsonObj)})
                     })
             }.bind(this)
         reader.readAsText(files[0]);
     }
 
-    // onSearchSubmit = async (term) => {
-    //     const response = await axios
-    //       .get('https://api.unsplash.com/search/photos', {
-    //         params: { query: term },
-    //         headers: {
-    //         Authorization: 'Client-ID'
-    //       }
-    //     })
-    //   this.setState({ images: response.data.results });
-    //   console.log('App this : ', this)
-    //   }
 
-
-    addGraph(data, title, cb) {
-        console.log('add')
-        fetch(`${API_ENDPOINT}data`, {
+    addGraph(data, title) {
+        fetch(`${API_ENDPOINT}/data`, {
             method: 'POST',
             body: data,
             headers: {
@@ -88,8 +55,7 @@ class AddGraph extends Component {
                 return res.json()
             })
             .then(data => {
-                // this.props.routeProps.history.push('/graph')
-                // cb(data)
+                this.props.history.push('/graph')
             })
             .catch(error => {
                 console.error(error)
@@ -101,14 +67,14 @@ class AddGraph extends Component {
             <>        
                 <h1>Add Graph</h1>
                 <div className="login">        
-                    <div className="form-group" >
+                    <div className="form-group">
                         <label htmlFor="title">Title:</label>
                         <input required type="title" name="title" id="title" value={ this.state.title } onChange={e => this.updateTitle(e.target.value)}/>
                         <ReactFileReader handleFiles={this.handleFiles} fileTypes={'.csv'}>
                             <button className='btn'>Upload</button>
                         </ReactFileReader>
                         <div className="buttons">
-                            <button type="submit" >
+                            <button type="submit" onClick={e => this.handleSubmit(e)}>
                                 Create
                             </button>
                             <Link to='/graph'>
