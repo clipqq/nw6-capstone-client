@@ -1,7 +1,7 @@
+import './Register.css'
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom'
 const { API_ENDPOINT } = require('../config')
-
 class Register extends Component {
     constructor(props) {
         super(props);
@@ -58,13 +58,19 @@ class Register extends Component {
         )
         .catch(err => {
             if(err.status===400){
-                this.setState({error: "email already taken"})
+                this.setState({error: "EMAIL ALREADY TAKEN!"})
             }
             })
     }
     render() {
         return (
-            <div className="login">        
+            <div className="login">   
+             {
+                this.state.error !== "" && 
+                <section id='error'>
+                    {this.state.error}
+                </section>
+            }     
                 <h2>Register</h2>
                 <form className="form-group" onSubmit={e => this.handleSubmit(e)}>
                     <label htmlFor="email">Email</label>
