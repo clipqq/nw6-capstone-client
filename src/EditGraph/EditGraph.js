@@ -8,7 +8,7 @@ class EditGraph extends Component {
             <>        
                 <h1>EditGraph</h1>
             </>
-        );
+        )
     }
 }
 
