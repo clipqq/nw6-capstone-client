@@ -70,7 +70,7 @@ class Login extends Component {
     render() {
         return (
             <div className="login">        
-                <h1>Login</h1>
+                <h2>Login</h2>
                 <div className="form-group">
                     <label htmlFor="email">Email</label>
                     <input required type="email" name="email" id="email" placeholder="Email@url.com" value={ this.state.email } onChange={e => this.updateEmail(e.target.value)}/>

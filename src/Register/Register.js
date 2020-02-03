@@ -1,18 +1,16 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom'
-import config from '../config'
+const { API_ENDPOINT } = require('../config')
 
 class Register extends Component {
     constructor(props) {
         super(props);
         this.state = {
             user_email: '',
-            name: '',
             password: '',
             user_name:'',
             confirm_password: ''
         }
-       
     }
 
     updateEmail(user_email) {
@@ -27,25 +25,28 @@ class Register extends Component {
     updateConfirmPassword(confirm_password) {
         this.setState({confirm_password: confirm_password});
     }
-    addUser= (e) =>{
+
+    handleSubmit(e) {
+        console.log('submit')
         e.preventDefault();
-        if(this.state.user_email==='' || this.state.password===''){
-            this.setState({error: "Please add password and user_email"})
-            return
+        const user = {
+            user_name: this.state.user_name,
+            user_email: this.state.user_email,
+            password: this.state.password
         }
-        const headers = new Headers ();
-        headers.append('Content-Type', 'application/json');
-        const options = {
+        this.addUser(JSON.stringify(user))
+    }
+    
+    addUser(user) {
+        console.log(user)
+        console.log('add')
+        fetch(`${API_ENDPOINT}/user`, {
             method: 'POST',
-            headers,
-            body: JSON.stringify({
-                user_name: this.state.user_name,
-                user_email: this.state.user_email,
-                password: this.state.password,
-            }),
-        };
-        const request = new Request (`${config.API_ENDPOINT}/user`, options)
-        fetch(request)
+            body: user,
+            headers: {
+                'content-type': 'application/json'
+            }
+        })
         .then(res=>{
             if(!res.ok){
                 throw res
@@ -64,25 +65,25 @@ class Register extends Component {
     render() {
         return (
             <div className="login">        
-                <h1>Register</h1>
-                <div className="form-group">
+                <h2>Register</h2>
+                <form className="form-group" onSubmit={e => this.handleSubmit(e)}>
                     <label htmlFor="email">Email</label>
-                    <input required type="email" name="email" id="email" placeholder="Email@url.com" value={ this.state.email } onChange={e => this.updateEmail(e.target.value)}/>
-                    <label htmlFor="name">UserName</label>
-                    <input required type="name" name="name" id="name" placeholder="UserName" value={ this.state.name } onChange={e => this.updateName(e.target.value)}/>
+                    <input required type="email" name="email" id="email" onChange={e => this.updateEmail(e.target.value)}/>
+                    <label htmlFor="name">Username</label>
+                    <input required type="name" name="name" id="name" onChange={e => this.updateName(e.target.value)}/>
                     <label htmlFor="password">Password</label>
-                    <input required type="text" name="password" id="password" placeholder="Password" value={ this.state.password } onChange={e => this.updatePassword(e.target.value)}/>
+                    <input required type="text" name="password" id="password" onChange={e => this.updatePassword(e.target.value)}/>
                     <label htmlFor="confirm_password">Confirm Password</label>
-                    <input required type="text" name="confirm_password" id="confirm_password" placeholder="Password" value={ this.state.confirm_password } onChange={e => this.updateConfirmPassword(e.target.value)}/>
+                    <input required type="text" name="confirm_password" id="confirm_password" onChange={e => this.updateConfirmPassword(e.target.value)}/>
                     <div className="buttons">
-                        <button type="submit" onClick={this.addUser}>
+                        <button type="submit">
                             Register
                         </button>
                         <Link to='/'>
                             <button>Back</button>
                         </Link>
                     </div>
-                </div>
+                </form>
             </div>
         );
     }
