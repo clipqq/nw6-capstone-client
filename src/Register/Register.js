@@ -66,16 +66,6 @@ class Register extends Component {
             <div className="login">        
                 <h1>Register</h1>
                 <div className="form-group">
-<<<<<<< HEAD
-                    <label htmlFor="email">Email</label>
-                    <input required type="email" name="email" id="email" placeholder="Email@url.com" value={ this.state.email } onChange={e => this.updateEmail(e.target.value)}/>
-                    <label htmlFor="name">UserName</label>
-                    <input required type="name" name="name" id="name" placeholder="UserName" value={ this.state.name } onChange={e => this.updateName(e.target.value)}/>
-                    <label htmlFor="password">Password</label>
-                    <input required type="text" name="password" id="password" placeholder="Password" value={ this.state.password } onChange={e => this.updatePassword(e.target.value)}/>
-                    <label htmlFor="confirm_password">Confirm Password</label>
-                    <input required type="text" name="confirm_password" id="confirm_password" placeholder="Password" value={ this.state.confirm_password } onChange={e => this.updateConfirmPassword(e.target.value)}/>
-=======
                     <label htmlFor="email">Email:</label>
                     <input required type="email" name="email" id="email" value={ this.state.user_email } onChange={e => this.updateEmail(e.target.value)}/>
                     <label htmlFor="name">User Name:</label>
@@ -84,7 +74,6 @@ class Register extends Component {
                     <input required type="text" name="password" id="password" value={ this.state.password } onChange={e => this.updatePassword(e.target.value)}/>
                     <label htmlFor="confirm_password">Confirm Password:</label>
                     <input required type="text" name="confirm_password" id="confirm_password" value={ this.state.confirm_password } onChange={e => this.updateConfirmPassword(e.target.value)}/>
->>>>>>> 49728a9734935ef0867c8d8ea6c41d4ea382f7fe
                     <div className="buttons">
                         <button type="submit" onClick={this.addUser}>
                             Register
