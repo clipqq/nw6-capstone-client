@@ -65,7 +65,7 @@ class AddGraph extends Component {
     render() {
         return (
             <>        
-                <h1>Add Graph</h1>
+                <h2>Add Graph</h2>
                 <div className="login">        
                     <div className="form-group">
                         <label htmlFor="title">Title:</label>
