@@ -11,7 +11,7 @@ class Landing extends Component {
     render() {
 
         return (
-            <>        
+            <div className="land">        
                 <h1>WTDD</h1>
                 <h2>Tell a story with your data.</h2>
                 <IconContext.Provider value={{ size: "200px", className: "arrow" }}>
@@ -29,7 +29,7 @@ class Landing extends Component {
                 <Link to={'/graph'} >
                     <button> Get Started</button>
                 </Link>
-            </>
+            </div>
         );
     }
 }
