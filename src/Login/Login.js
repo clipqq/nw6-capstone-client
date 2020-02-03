@@ -69,7 +69,12 @@ class Login extends Component {
 
     render() {
         return (
-            <div className="login">        
+            <div className="login">        {
+                this.state.error !== "" && 
+                <section id='error'>
+                    {this.state.error}
+                </section>
+            }
                 <h2>Login</h2>
                 <div className="form-group">
                     <label htmlFor="email">Email</label>
