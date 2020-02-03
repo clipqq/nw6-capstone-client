@@ -38,6 +38,7 @@ class Register extends Component {
     }
     
     addUser(user) {
+        console.log(user)
         fetch(`${API_ENDPOINT}/user`, {
             method: 'POST',
             body: user,
@@ -51,13 +52,13 @@ class Register extends Component {
             }
             return res.json()
         })
-        .then(data=>console.log('data here:', data),
-            this.props.history.push("/login")
+        .then(data=>
+            this.props.history.push(`/login`)
         )
         .catch(err => {
             if(err.status===400){
                 this.setState(
-                    {error: "EMAIL ALREADY TAKEN! PLEASE USE A NEW EMAIL"})
+                    {error: "USERNAME OR EMAIL ALREADY TAKEN! PLEASE CHANGE"})
             }
             console.log('this is the err',err)
             })
