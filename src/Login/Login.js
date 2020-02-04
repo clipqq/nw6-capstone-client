@@ -1,52 +1,43 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom'
 import './Login.css'
-import config from '../config'
+const { API_ENDPOINT } = require('../config')
 
 class Login extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            user_email: '',
             password: '',
             user_name:'',
             error: ''
-
         }
-        
-        this.login=this.login.bind(this)
     }
 
     updateName(user_name) {
         this.setState({user_name: user_name});
     }
-
-    updateEmail(user_email) {
-        this.setState({user_email: user_email});
-    }
     updatePassword(password) {
         this.setState({password: password});
     }
-    login(e){
-        console.log(this.state.user_name,'USERNAME')
+    
+    handleSubmit(e) {
+        console.log('submit')
         e.preventDefault();
-        if(this.state.email==='' || this.state.password===''){
-            this.setState({error: "Please add password and email"})
-            return
+        const user = {
+            user_name: this.state.user_name,
+            password: this.state.password
         }
-        const headers = new Headers ();
-        headers.append('Content-Type', 'application/json');
-        const options = {
+        this.loginUser(JSON.stringify(user))
+    }
+
+    loginUser(user) {
+        fetch(`${API_ENDPOINT}/auth/login`, {
             method: 'POST',
-            headers,
-            body: JSON.stringify({
-                user_name:this.state.user_name,
-                user_email:this.state.user_email,
-                password: this.state.password,
-            }),
-        };
-        const request = new Request (`${config.API_ENDPOINT}/auth/login`, options)
-        fetch(request)
+            body: user,
+            headers: {
+                'content-type': 'application/json'
+            }
+        })
         .then(res=>{
             if(!res.ok){
                 throw res
@@ -54,16 +45,14 @@ class Login extends Component {
             return res.json()
         })
         .then(data => { 
-
             localStorage.setItem("authToken", data.authToken)
-            this.props.history.push('/saved')
-         })
-         .catch(err => {
+            this.props.routeProps.history.push('/graph')
+        })
+        .catch(err => {
             if(err.status===400){
                 this.setState({error: "Incorrect username or password"})
             }
-            })
-
+        })
     }
 
 
@@ -71,20 +60,20 @@ class Login extends Component {
         return (
             <div className="login">        
                 <h2>Login</h2>
-                <div className="form-group">
-                    <label htmlFor="email">Email</label>
-                    <input required type="email" name="email" id="email" placeholder="Email@url.com" value={ this.state.email } onChange={e => this.updateEmail(e.target.value)}/>
+                <form className="form-group" onSubmit={e => this.handleSubmit(e)}>
+                <label htmlFor="name">Username</label>
+                    <input required type="name" name="name" id="name" onChange={e => this.updateName(e.target.value)}/>
                     <label htmlFor="password">Password</label>
-                    <input required type="text" name="password" id="password" placeholder="Password" value={ this.state.password } onChange={e => this.updatePassword(e.target.value)}/>
+                    <input required type="text" name="password" id="password" onChange={e => this.updatePassword(e.target.value)}/>
                     <div className="buttons">
-                        <button  onClick={this.login}type="submit">
+                        <button>
                             Login
                         </button>
                         <Link to='/'>
                             <button>Back</button>
                         </Link>
                     </div>
-                </div>
+                </form>
             </div>
         );
     }

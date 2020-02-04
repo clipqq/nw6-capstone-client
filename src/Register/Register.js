@@ -27,7 +27,6 @@ class Register extends Component {
     }
 
     handleSubmit(e) {
-        console.log('submit')
         e.preventDefault();
         const user = {
             user_name: this.state.user_name,
@@ -38,8 +37,6 @@ class Register extends Component {
     }
     
     addUser(user) {
-        console.log(user)
-        console.log('add')
         fetch(`${API_ENDPOINT}/user`, {
             method: 'POST',
             body: user,
@@ -54,7 +51,7 @@ class Register extends Component {
             return res.json()
         })
         .then(data=>
-            this.props.history.push("/login")
+            this.props.routeProps.history.push("/login")
         )
         .catch(err => {
             if(err.status===400){
@@ -63,6 +60,8 @@ class Register extends Component {
             })
     }
     render() {
+        console.log(this.props)
+
         return (
             <div className="login">        
                 <h2>Register</h2>
