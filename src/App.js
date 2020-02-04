@@ -25,7 +25,7 @@ function App() {
           <Route exact path='/graph/:graph_id' component={Graph} />
           <Route exact path='/addGraph' component={AddGraph} />
           <Route exact path='/editGraph' component={EditGraph} />
-          <Route exact path='/register' component={Register} />
+          <Route exact path='/register' render={(routeProps) => <Register routeProps={routeProps}/>} component={Register} />
           <Route exact path='/login' component={Login} />
         </main>
       </ErrorBoundry>

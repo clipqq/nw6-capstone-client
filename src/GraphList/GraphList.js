@@ -40,7 +40,7 @@ class GraphList extends Component {
 
         return (
             <>
-                <h1>GraphList</h1>
+                <h2>GraphList</h2>
 
                 <h2>API Line Graph</h2>
                 <LineGraph data={results} />

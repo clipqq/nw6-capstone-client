@@ -60,7 +60,7 @@ class Login extends Component {
          })
          .catch(err => {
             if(err.status===400){
-                this.setState({error: "Incorrect username or password"})
+                this.setState({error: "INCORRECT USERNAME OR PASSWORD"})
             }
             })
 
@@ -69,13 +69,24 @@ class Login extends Component {
 
     render() {
         return (
-            <div className="login">        
-                <h1>Login</h1>
+            <div className="login">        {
+                this.state.error !== "" && 
+                <section id='error'>
+                    {this.state.error}
+                </section>
+            }
+                <h2>Login</h2>
                 <div className="form-group">
+                    <label htmlFor="username">Username
+                    </label>
+                    <input required type="username" name="username" id="username" placeholder="Username"
+                    onChange={e => this.updateName(e.target.value)}
+                    value={ this.state.user_name } 
+                    onChange={e => this.updateName(e.target.value)}/>
                     <label htmlFor="email">Email</label>
                     <input required type="email" name="email" id="email" placeholder="Email@url.com" value={ this.state.email } onChange={e => this.updateEmail(e.target.value)}/>
                     <label htmlFor="password">Password</label>
-                    <input required type="text" name="password" id="password" placeholder="Password" value={ this.state.password } onChange={e => this.updatePassword(e.target.value)}/>
+                    <input required type="text" name="password" id="password" placeholder="Password" value={ this.state.password } onChange= {e => this.updatePassword(e.target.value)}/>
                     <div className="buttons">
                         <button  onClick={this.login}type="submit">
                             Login
