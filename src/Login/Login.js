@@ -52,7 +52,7 @@ class Login extends Component {
         })
         .catch(err => {
             if(err.status===400){
-                this.setState({error: "Incorrect username or password"})
+                this.setState({error: "INCORRECT USERNAME OR PASSWORD"})
             }
         })
     }
@@ -60,13 +60,19 @@ class Login extends Component {
 
     render() {
         return (
-            <div className="login">        
+            <div className="login">        {
+                this.state.error !== "" && 
+                <section id='error'>
+                    {this.state.error}
+                </section>
+            }
                 <h2>Login</h2>
                 <form className="form-group" onSubmit={e => this.handleSubmit(e)}>
-                <label htmlFor="name">Username</label>
+                    <label htmlFor="name">Username</label>
                     <input required type="name" name="name" id="name" onChange={e => this.updateName(e.target.value)}/>
                     <label htmlFor="password">Password</label>
                     <input required type="text" name="password" id="password" onChange={e => this.updatePassword(e.target.value)}/>
+
                     <div className="buttons">
                         <button>
                             Login
