@@ -6,8 +6,6 @@ import ScatterAnimation from '../GraphTemplates/ScatterAnimation'
 import ZoomableChart from '../GraphTemplates/zoomChart'
 
 
-const API_URL = 'https://nataliia-radina.github.io/react-vis-example/'
-
 class GraphList extends Component {
     constructor(props) {
         super(props)
@@ -16,24 +14,24 @@ class GraphList extends Component {
         }
     }
 
-    componentDidMount() {
-        fetch(API_URL)
-            .then(response => {
-                if (response.ok) {
-                    // console.log(response)
-                    return response.json()
-                } else {
-                    throw new Error('something went wrong')
-                }
-            })
-            .then(response =>
-                this.setState({
-                    results: response.results.filter(r => {
-                        return r.name === 'JavaScript'
-                    }),
-                }),
-            )
-    }
+    // componentDidMount() {
+    //     fetch(API_URL)
+    //         .then(response => {
+    //             if (response.ok) {
+    //                 // console.log(response)
+    //                 return response.json()
+    //             } else {
+    //                 throw new Error('something went wrong')
+    //             }
+    //         })
+    //         .then(response =>
+    //             this.setState({
+    //                 results: response.results.filter(r => {
+    //                     return r.name === 'JavaScript'
+    //                 }),
+    //             }),
+    //         )
+    // }
 
     render() {
         const { results } = this.state
