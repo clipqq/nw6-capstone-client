@@ -60,8 +60,6 @@ class Register extends Component {
             })
     }
     render() {
-        console.log(this.props)
-
         return (
             <div className="login">        
                 <h2>Register</h2>
