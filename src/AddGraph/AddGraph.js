@@ -41,8 +41,8 @@ class AddGraph extends Component {
             body: data,
             headers: {
                 'content-type': 'application/json',
-                user_id: 1,
-                table_name: title,
+                'user_id': localStorage.getItem("userId"),
+                'table_name': title
             },
         })
             .then(res => {
@@ -62,6 +62,7 @@ class AddGraph extends Component {
     }
 
     render() {
+        console.log(localStorage.getItem("userId"))
         return (
             <>
                 <h1>Add Graph</h1>
