@@ -25,8 +25,8 @@ function App() {
           <Route exact path='/graph/:graph_id' component={Graph} />
           <Route exact path='/addGraph' component={AddGraph} />
           <Route exact path='/editGraph' component={EditGraph} />
-          <Route exact path='/register' render={(routeProps) => <Register routeProps={routeProps}/>} component={Register} />
-          <Route exact path='/login' component={Login} />
+          <Route exact path='/register' render={(routeProps) => <Register routeProps={routeProps}/>}/>
+          <Route exact path='/login' render={(routeProps) => <Login routeProps={routeProps}/>}/>
         </main>
       </ErrorBoundry>
       <footer className="App-footer">
