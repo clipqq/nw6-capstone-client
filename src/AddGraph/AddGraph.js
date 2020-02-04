@@ -42,7 +42,7 @@ class AddGraph extends Component {
             body: data,
             headers: {
                 'content-type': 'application/json',
-                'user_id': 1,
+                'user_id': localStorage.getItem("userId"),
                 'table_name': title
             },
         })
@@ -63,6 +63,7 @@ class AddGraph extends Component {
     }
 
     render() {
+        console.log(localStorage.getItem("userId"))
         return (
             <>        
                 <h2>Add Graph</h2>
