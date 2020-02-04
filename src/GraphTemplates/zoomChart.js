@@ -48,7 +48,7 @@ function getRandomSeriesData(total) {
     return result
 }
 
-export default class ZoomableChart extends React.Component (props){
+export default class ZoomableChart extends React.Component (){
 
     // Update state here with User props, XY values only.
     state = {
