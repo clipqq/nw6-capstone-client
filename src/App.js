@@ -16,15 +16,15 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <Route path='/' component={Header} />
+        <Route path='/' component={Header}/>
       </header>
       <ErrorBoundry>
         <main className="container">
-          <Route exact path='/' component={Landing} />
+          <Route exact path='/' component={Landing}/>
           <Route exact path='/graph' render={(routeProps) => <GraphList routeProps={routeProps}/>}/>
-          <Route exact path='/graph/:graph_id' component={Graph} />
-          <Route exact path='/addGraph' component={AddGraph} />
-          <Route exact path='/editGraph' component={EditGraph} />
+          <Route exact path='/graph/:graph_id' component={Graph}/>
+          <Route exact path='/addGraph' component={AddGraph}/>
+          <Route exact path='/editGraph' component={EditGraph}/>
           <Route exact path='/register' render={(routeProps) => <Register routeProps={routeProps}/>}/>
           <Route exact path='/login' render={(routeProps) => <Login routeProps={routeProps}/>}/>
         </main>
