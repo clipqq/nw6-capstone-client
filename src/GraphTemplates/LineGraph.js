@@ -6,13 +6,19 @@ import {
     VerticalGridLines,
     HorizontalGridLines,
     LineSeries,
+    VerticalBarSeries,
+    VerticalBarSeriesCanvas,
 } from 'react-vis'
+const { API_ENDPOINT } = require('../config')
 
 export default class LineGraph extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-            dataArr: this.props.data,
+            tableId: this.props.tableId,
+            userId: localStorage.getItem('userId'),
+            tableName: 'NA',
+            dataResult: [],
         }
 
         console.log('inside LineGraph', this.props)
@@ -26,15 +32,39 @@ export default class LineGraph extends React.Component {
     // stroke
     // strokeWidth
 
-    componentDidMount = () => {
+    updateState = (data, table) => {
         this.setState({
-            title: this.props.tableName,
-            dataArr: this.props.data,
+            dataResult: data,
+            tableName: table,
         })
-        console.log('after didmount ', this.state)
+        console.log('updated state', this.state)
     }
+    componentDidMount = () => {
+        fetch(`${API_ENDPOINT}/data/${this.state.tableId}`, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                user_id: this.state.userId,
+            },
+        })
+            .then(res => {
+                if (!res.ok) {
+                    return res.json().then(error => {
+                        throw error
+                    })
+                }
+                return res.json()
+            })
+            .then(res => {
+                this.updateState(res.data, res.table_name)
+            })
+            .catch(error => {
+                console.error(error)
+            })
+    }
+
     render() {
-        console.log('in render',this.state.dataArr)
+        console.log('state in render', this.state)
         const sampleData = [
             { x: 0, y: 8 },
             { x: 1, y: 5 },
@@ -50,15 +80,19 @@ export default class LineGraph extends React.Component {
 
         return (
             <div>
+                <h3>Project: {this.state.tableName}</h3>
+
                 <XYPlot height={300} width={300}>
                     <VerticalGridLines />
                     <HorizontalGridLines />
                     <XAxis />
                     <YAxis />
                     {/* <LineSeries data={this.state.dataArr} style={{ fill: 'none' }} /> */}
-                    <LineSeries data={sampleData} style={{ fill: 'none' }} />
+                    <VerticalBarSeries
+                        data={this.state.dataResult}
+                        style={{ fill: 'red' }}
+                    />
                 </XYPlot>
-                {this.state.dataArr}
             </div>
         )
     }
