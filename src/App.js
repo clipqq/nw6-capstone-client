@@ -15,9 +15,11 @@ import NotFound from './404Page/404'
 import './App.css';
 
 function App() {
+  {console.log('auth')}
   return (
     <Router>
-<div className="App">
+    <div className="App">
+      
       <header className="App-header">
         <Route path='/' component={Header} />
       </header>

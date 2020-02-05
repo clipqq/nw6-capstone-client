@@ -19,9 +19,7 @@ class Login extends Component {
     updatePassword(password) {
         this.setState({password: password});
     }
-    
     handleSubmit(e) {
-        console.log('submit')
         e.preventDefault();
         const user = {
             user_name: this.state.user_name,
@@ -45,10 +43,11 @@ class Login extends Component {
             return res.json()
         })
         .then(data => { 
-            console.log(data)
+            console.log('data', data)
             localStorage.setItem("authToken", data.authToken)
             localStorage.setItem("userId", data.user_id)
             this.props.routeProps.history.push('/graph')
+            console.log('LOCAL STOR', localStorage, data)
         })
         .catch(err => {
             if(err.status===400){
@@ -56,16 +55,13 @@ class Login extends Component {
             }
         })
     }
-
-
     render() {
         return (
-            <div className="login">        {
-                this.state.error !== "" && 
-                <section id='error'>
-                    {this.state.error}
-                </section>
-            }
+            <div className="login">        
+                {this.state.error !== "" && 
+                    <section id='error'>
+                        {this.state.error}
+                    </section>}
                 <h2>Login</h2>
                 <form className="form-group" onSubmit={e => this.handleSubmit(e)}>
                     <label htmlFor="name">Username</label>
