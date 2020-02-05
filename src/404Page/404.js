@@ -4,7 +4,7 @@ import ReactFileReader from 'react-file-reader'
 const csv = require('csvtojson')
 const { API_ENDPOINT } = require('../config')
 
-class AddGraph extends Component {
+class NotFound extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -64,30 +64,14 @@ class AddGraph extends Component {
 
     render() {
         return (
-            <>        
-                <h2>Add Graph</h2>
-                <div className="login">        
-                    <div className="form-group">
-                        <label htmlFor="title">Title:</label>
-                        <input required type="title" name="title" id="title" value={ this.state.title } onChange={e => this.updateTitle(e.target.value)}/>
-                        <ReactFileReader handleFiles={this.handleFiles} fileTypes={'.csv'}>
-                            <button className='btn'>Upload</button>
-                        </ReactFileReader>
-                        <div className="buttons">
-                            <button type="submit" onClick={e => this.handleSubmit(e)}>
-                                Create
-                            </button>
-                            <Link to='/graph'>
-                                <button>Back</button>
-                            </Link>
-                        </div>
-                    </div>
-                </div>
+            <>   <br></br>                
+               <br></br>     
+ 
+                <h2>404 NOT FOUND</h2>
+                
             </>
         );
     }
 }
 
-export default AddGraph;
-
-// onClick={e => this.handleSubmit(e)}
+export default NotFound;
