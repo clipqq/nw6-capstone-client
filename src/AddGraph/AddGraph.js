@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import ReactFileReader from 'react-file-reader'
 const csv = require('csvtojson')
@@ -6,7 +6,7 @@ const { API_ENDPOINT } = require('../config')
 
 class AddGraph extends Component {
     constructor(props) {
-        super(props);
+        super(props)
         this.state = {
             title: '',
             type: 'line',
@@ -15,7 +15,7 @@ class AddGraph extends Component {
     }
 
     updateTitle(title) {
-        this.setState({title: title});
+        this.setState({ title: title })
     }
 
     updateType(type) {
@@ -27,19 +27,18 @@ class AddGraph extends Component {
         this.addGraph(this.state.data, this.state.title, this.state.type)
     }
 
-    handleFiles = async (files) => {
-        let reader = new FileReader();
+    handleFiles = async files => {
+        let reader = new FileReader()
         reader.onload = function(e) {
             const csvStr = reader.result
             csv()
                 .fromString(csvStr)
-                .then((jsonObj) => {
-                        this.setState({data: JSON.stringify(jsonObj)})
-                    })
-            }.bind(this)
-        reader.readAsText(files[0]);
+                .then(jsonObj => {
+                    this.setState({ data: JSON.stringify(jsonObj) })
+                })
+        }.bind(this)
+        reader.readAsText(files[0])
     }
-
 
     addGraph(data, title, type) {
         console.log(type)
@@ -53,11 +52,11 @@ class AddGraph extends Component {
                 'table_type': type
             },
         })
-        .then(res => {
-            if (!res.ok) {
-                return res.json().then(error => {
-                    throw error
-                })
+            .then(res => {
+                if (!res.ok) {
+                    return res.json().then(error => {
+                        throw error
+                    })
                 }
                 return res.json()
             })
@@ -67,17 +66,18 @@ class AddGraph extends Component {
             })
             .catch(error => {
                 console.error(error)
-        })
+            })
     }
 
     render() {
         console.log(this.state)
         return (
-            <>        
-                <h2>Add Graph</h2>
-                <div className="login">        
+            <>
+                <h1>Add Graph</h1>
+                <div className="login">
                     <div className="form-group">
                         <label htmlFor="title">Title:</label>
+
                         <input required type="title" name="title" id="title" onChange={e => this.updateTitle(e.target.value)}/>
 
 
@@ -91,22 +91,26 @@ class AddGraph extends Component {
 
                         <ReactFileReader handleFiles={this.handleFiles} fileTypes={'.csv'}>
                             <button className='btn'>Upload</button>
+
                         </ReactFileReader>
                         <div className="buttons">
-                            <button type="submit" onClick={e => this.handleSubmit(e)}>
+                            <button
+                                type="submit"
+                                onClick={e => this.handleSubmit(e)}
+                            >
                                 Create
                             </button>
-                            <Link to='/graph'>
+                            <Link to="/graph">
                                 <button>Back</button>
                             </Link>
                         </div>
                     </div>
                 </div>
             </>
-        );
+        )
     }
 }
 
-export default AddGraph;
+export default AddGraph
 
 // onClick={e => this.handleSubmit(e)}

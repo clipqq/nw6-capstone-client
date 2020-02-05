@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom'
 
 import LineGraph from '../GraphTemplates/LineGraph'
 import ScatterAnimation from '../GraphTemplates/ScatterAnimation'
-import ZoomableChart from '../GraphTemplates/zoomChart'
 
 
 class GraphList extends Component {
@@ -48,9 +47,6 @@ class GraphList extends Component {
 
                 <h2>Scatter Animation</h2>
                 <ScatterAnimation  />
-
-                <h2>Scatter Animation</h2>
-                <ZoomableChart />
 
                 <Link to={'/addGraph'}>
                     <button>New Graph</button>
