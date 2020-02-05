@@ -1,18 +1,18 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import AddGraph from './AddGraph';
+import Register from './Saved';
 import renderer from 'react-test-renderer';
 
-describe('AddGraph Component', () => {
+describe('Register Component', () => {
   it('renders without crashing', () => {
     const div = document.createElement('div');
-    ReactDOM.render(< AddGraph />, div);
+    ReactDOM.render(<Register />, div);
     ReactDOM.unmountComponentAtNode(div);
   });
 
   it('renders the UI as expected', () => {
     const tree = renderer
-      .create(<AddGraph/>)
+      .create(<Register/>)
       .toJSON();
     expect(tree).toMatchSnapshot();  
   });
