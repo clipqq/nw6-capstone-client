@@ -27,7 +27,7 @@ class Landing extends Component {
                 <p>Discover the story within your data.</p>
                 <p>Share what you have discovered.</p>
                 <Link to={'/graph'} >
-                    <button> Get Started</button>
+                    <button className='bigBtn'> Get Started</button>
                 </Link>
             </div>
         );
