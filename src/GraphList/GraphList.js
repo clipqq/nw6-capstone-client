@@ -15,7 +15,7 @@ class GraphList extends Component {
 
     componentDidMount() {
 
-        fetch(`${API_ENDPOINT}/data/`, {
+        fetch(`${API_ENDPOINT}/data`, {
             method: 'GET',
             headers: {
                 'content-type': 'application/json', 
@@ -35,9 +35,8 @@ class GraphList extends Component {
                     results: 
                     response.filter(r => {
                         return r.table_name === 'JavaScript'
-                    })                
-                })
-                // console.log('RES', response),  
+                    })    
+                })          
             )
     }
     
@@ -47,6 +46,8 @@ class GraphList extends Component {
         return (
             <>
                 <h2>GraphList</h2>
+                <br></br>
+                <br></br>
 
                 <h2>API Line Graph</h2>
                 <LineGraph data={results} />
