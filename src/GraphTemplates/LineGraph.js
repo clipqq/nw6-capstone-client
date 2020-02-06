@@ -6,8 +6,6 @@ import {
     VerticalGridLines,
     HorizontalGridLines,
     LineSeries,
-    VerticalBarSeries,
-    VerticalBarSeriesCanvas,
 } from 'react-vis'
 const { API_ENDPOINT } = require('../config')
 
@@ -18,7 +16,7 @@ export default class LineGraph extends React.Component {
             tableId: this.props.tableId,
             userId: localStorage.getItem('userId'),
             tableName: 'NA',
-            dataResult: [],
+            dataResult: [{x:1},{y:1}],
         }
 
         console.log('inside LineGraph', this.props)
@@ -32,9 +30,27 @@ export default class LineGraph extends React.Component {
     // stroke
     // strokeWidth
 
+    validateData = objects => {
+        for (var i = 0; i < objects.length; i++) {
+            var obj = objects[i]
+            for (var prop in obj) {
+                if (
+                    obj.hasOwnProperty(prop) &&
+                    obj[prop] !== null &&
+                    !isNaN(obj[prop])
+                ) {
+                    obj[prop] = +obj[prop]
+                }
+            }
+        }
+
+        console.log(objects)
+        return objects
+    }
+
     updateState = (data, table) => {
         this.setState({
-            dataResult: data,
+            dataResult: this.validateData(data),
             tableName: table,
         })
         console.log('updated state', this.state)
@@ -66,17 +82,19 @@ export default class LineGraph extends React.Component {
     render() {
         console.log('state in render', this.state)
         const sampleData = [
-            { x: 0, y: 8 },
-            { x: 1, y: 5 },
-            { x: 2, y: 4 },
-            { x: 3, y: 9 },
-            { x: 4, y: 1 },
-            { x: 5, y: 7 },
-            { x: 6, y: 6 },
-            { x: 7, y: 3 },
-            { x: 8, y: 2 },
-            { x: 9, y: 0 },
+            { "x": 0, "y": 8 },
+            { "x": 1, "y": 5 },
+            { "x": 2, "y": 4 },
+            { "x": 3, "y": 9 },
+            { "x": 4, "y": 1 },
+            { "x": 5, "y": 7 },
+            { "x": 6, "y": 6 },
+            { "x": 7, "y": 3 },
+            { "x": 8, "y": 2 },
+            { "x": 9, "y": 0 },
         ]
+
+        console.log('final data state', this.state.dataResult)
 
         return (
             <div>
@@ -87,10 +105,10 @@ export default class LineGraph extends React.Component {
                     <HorizontalGridLines />
                     <XAxis />
                     <YAxis />
-                    {/* <LineSeries data={this.state.dataArr} style={{ fill: 'none' }} /> */}
-                    <VerticalBarSeries
+                    {/* <LineSeries data={sampleData} style={{ fill: 'none' }} /> */}
+                    <LineSeries
                         data={this.state.dataResult}
-                        style={{ fill: 'red' }}
+                        style={{ fill: 'none' }}
                     />
                 </XYPlot>
             </div>
