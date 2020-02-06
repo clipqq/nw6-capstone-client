@@ -46,8 +46,9 @@ class GraphList extends Component {
         return (
             <>
                 <h2>GraphList</h2>
-                <br></br>
-                <br></br>
+                <Link to={'/addGraph'}>
+                    <button className="bigBtn">New Graph</button>
+                </Link>
 
                 <h2>API Line Graph</h2>
                 <LineGraph data={results} />
