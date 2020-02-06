@@ -39,6 +39,9 @@ class GraphList extends Component {
         return (
             <>
                 <h2>GraphList</h2>
+                <Link to={'/addGraph'}>
+                    <button className="bigBtn">New Graph</button>
+                </Link>
 
                 <h2>API Line Graph</h2>
                 <LineGraph data={results} />
@@ -52,9 +55,6 @@ class GraphList extends Component {
                 <h2>Scatter Animation</h2>
                 <ZoomableChart />
 
-                <Link to={'/addGraph'}>
-                    <button>New Graph</button>
-                </Link>
             </>
         )
     }

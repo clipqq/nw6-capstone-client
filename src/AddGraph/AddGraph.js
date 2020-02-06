@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom'
 import ReactFileReader from 'react-file-reader'
+import './AddGraph.css'
 const csv = require('csvtojson')
 const { API_ENDPOINT } = require('../config')
 
@@ -40,7 +41,6 @@ class AddGraph extends Component {
         reader.readAsText(files[0]);
     }
 
-
     addGraph(data, title, type) {
         console.log(type)
         fetch(`${API_ENDPOINT}/data`, {
@@ -71,7 +71,6 @@ class AddGraph extends Component {
     }
 
     render() {
-        console.log(this.state)
         return (
             <>        
                 <h2>Add Graph</h2>
@@ -79,18 +78,15 @@ class AddGraph extends Component {
                     <div className="form-group">
                         <label htmlFor="title">Title:</label>
                         <input required type="title" name="title" id="title" onChange={e => this.updateTitle(e.target.value)}/>
-
-
                         <label htmlFor="type">Type:</label>
                         <select required type="type" name="type" id="type" onChange={e => this.updateType(e.target.value)}>
                             <option defaultValue value="line">Line</option>
                             <option value="bar">Bar</option>
                             <option value="scatter">Scatter</option>
                         </select>
-
-
+                        <label htmlFor="file">File:</label>
                         <ReactFileReader handleFiles={this.handleFiles} fileTypes={'.csv'}>
-                            <button className='btn'>Upload</button>
+                            <button className='upload' id='file'>Click to upload</button>
                         </ReactFileReader>
                         <div className="buttons">
                             <button type="submit" onClick={e => this.handleSubmit(e)}>
