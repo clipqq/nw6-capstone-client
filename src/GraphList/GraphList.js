@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom'
 import LineGraph from '../GraphTemplates/LineGraph'
 import BarGraph from '../GraphTemplates/BarGraph'
 import Scatterplot from '../GraphTemplates/Scatterplot'
-
 const { API_ENDPOINT } = require('../config')
 
 class GraphList extends Component {
