@@ -12,7 +12,6 @@ const validateData = (objects) => {
         }
     }
 
-    console.log(objects)
     return objects
 }
 
