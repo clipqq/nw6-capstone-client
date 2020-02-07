@@ -20,7 +20,7 @@ export default class LineGraph extends React.Component {
             dataResult: [],
         }
 
-        console.log('inside LineGraph', this.props)
+        // console.log('inside LineGraph', this.props)
     }
 
     updateState = (data, table) => {
@@ -28,7 +28,7 @@ export default class LineGraph extends React.Component {
             dataResult: validateData(data),
             tableName: table,
         })
-        console.log('updated state', this.state)
+        // console.log('updated state', this.state)
     }
     componentDidMount = () => {
         fetch(`${API_ENDPOINT}/data/${this.state.tableId}`, {
@@ -55,7 +55,7 @@ export default class LineGraph extends React.Component {
     }
 
     render() {
-        console.log('state in render', this.state)
+        // console.log('state in render', this.state)
         const sampleData = [
             { "x": 0, "y": 8 },
             { "x": 1, "y": 5 },
@@ -69,7 +69,7 @@ export default class LineGraph extends React.Component {
             { "x": 9, "y": 0 },
         ]
 
-        console.log('final data state', this.state.dataResult)
+        // console.log('final data state', this.state.dataResult)
 
         return (
             <div>
