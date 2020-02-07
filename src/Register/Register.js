@@ -77,9 +77,9 @@ class Register extends Component {
                     <label htmlFor="name">Username</label>
                     <input required type="name" name="name" id="name" onChange={e => this.updateName(e.target.value)}/>
                     <label htmlFor="password">Password</label>
-                    <input required type="text" name="password" id="password" onChange={e => this.updatePassword(e.target.value)}/>
+                    <input required type="password" name="password" id="password" onChange={e => this.updatePassword(e.target.value)}/>
                     <label htmlFor="confirm_password">Confirm Password</label>
-                    <input required type="text" name="confirm_password" id="confirm_password" onChange={e => this.updateConfirmPassword(e.target.value)}/>
+                    <input required type="password" name="confirm_password" id="confirm_password" onChange={e => this.updateConfirmPassword(e.target.value)}/>
                     <div className="buttons">
                         <button type="submit">
                             Register

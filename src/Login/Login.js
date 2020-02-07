@@ -67,7 +67,7 @@ class Login extends Component {
                     <label htmlFor="name">Username</label>
                     <input required type="name" name="name" id="name" onChange={e => this.updateName(e.target.value)}/>
                     <label htmlFor="password">Password</label>
-                    <input required type="text" name="password" id="password" onChange={e => this.updatePassword(e.target.value)}/>
+                    <input required type="password" name="password" id="password" onChange={e => this.updatePassword(e.target.value)}/>
 
                     <div className="buttons">
                         <button>
