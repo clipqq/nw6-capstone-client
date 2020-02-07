@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import LineGraph from '../GraphTemplates/LineGraph'
-import ScatterAnimation from '../GraphTemplates/ScatterAnimation'
-
+import BarGraph from '../GraphTemplates/BarGraph'
+import Scatterplot from '../GraphTemplates/Scatterplot'
 const { API_ENDPOINT } = require('../config')
 
 class GraphList extends Component {
@@ -49,13 +49,6 @@ class GraphList extends Component {
                 <Link to={'/addGraph'}>
                     <button className="bigBtn">New Graph</button>
                 </Link>
-
-                <h2>API Line Graph</h2>
-                <LineGraph data={results} />
-                <h2>API Graph</h2>
-
-                <h2>Scatter Animation</h2>
-                <ScatterAnimation  />
 
                 <Link to={'/addGraph'}>
                     <button>New Graph</button>

@@ -6,8 +6,6 @@ import {
     VerticalGridLines,
     HorizontalGridLines,
     VerticalBarSeries,
-    VerticalBarSeriesCanvas,
-    LabelSeries,
 } from 'react-vis'
 import { validateData } from './GraphUtils/csvUtils'
 const { API_ENDPOINT } = require('../config')
@@ -19,7 +17,7 @@ export default class BarGraph extends React.Component {
             tableId: this.props.tableId,
             userId: localStorage.getItem('userId'),
             tableName: 'NA',
-            dataResult: [{ x: 1 }, { y: 1 }],
+            dataResult: [],
         }
     }
 
