@@ -7,6 +7,7 @@ import {
     HorizontalGridLines,
     LineSeries,
 } from 'react-vis'
+import { validateData } from './GraphUtils/csvUtils'
 const { API_ENDPOINT } = require('../config')
 
 export default class LineGraph extends React.Component {
@@ -16,41 +17,15 @@ export default class LineGraph extends React.Component {
             tableId: this.props.tableId,
             userId: localStorage.getItem('userId'),
             tableName: 'NA',
-            dataResult: [{x:1},{y:1}],
+            dataResult: [],
         }
 
         console.log('inside LineGraph', this.props)
     }
-    // const dataArr = props.data.map((d)=> {
-    //     return {x: d.year + '/' + d.quarter,
-    //     y: parseFloat(d.count/1000)}
-    // });
-
-    // KEY USER PARAMETERS
-    // stroke
-    // strokeWidth
-
-    validateData = objects => {
-        for (var i = 0; i < objects.length; i++) {
-            var obj = objects[i]
-            for (var prop in obj) {
-                if (
-                    obj.hasOwnProperty(prop) &&
-                    obj[prop] !== null &&
-                    !isNaN(obj[prop])
-                ) {
-                    obj[prop] = +obj[prop]
-                }
-            }
-        }
-
-        console.log(objects)
-        return objects
-    }
 
     updateState = (data, table) => {
         this.setState({
-            dataResult: this.validateData(data),
+            dataResult: validateData(data),
             tableName: table,
         })
         console.log('updated state', this.state)

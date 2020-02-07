@@ -1,6 +1,6 @@
 import React from 'react';
 
-import GraphButton from './GraphUtils.js/GraphButton';
+import GraphButton from './GraphUtils/GraphButton';
 import {
   XYPlot,
   XAxis,
