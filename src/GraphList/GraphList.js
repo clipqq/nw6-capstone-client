@@ -17,7 +17,10 @@ class GraphList extends Component {
     mapGraphs() {
         const { userGraphs } = this.state
         const graphs = userGraphs.map(graph => {
-            return <Link key={graph.id} to={`/graph/${graph.table_type}/${graph.id}`}>Hello</Link>
+            return <div>
+                    Name:<Link key={graph.id} to={`/graph/${graph.table_type}/${graph.id}`}>{graph.table_name}</Link> 
+                    Type:<Link key={graph.id} to={`/graph/${graph.table_type}/${graph.id}`}>{graph.table_type}</Link><button>Delete</button>  
+                </div>
         })
         console.log(graphs)
         this.setState({jsxGraph:graphs})
@@ -56,7 +59,7 @@ class GraphList extends Component {
                 <Link to={'/addGraph'}>
                     <button className="bigBtn">New Graph</button>
                 </Link>
-                {this.state.jsxGraph}
+               <section className="listContainer"> {this.state.jsxGraph} </section>
             </>
         )
     }

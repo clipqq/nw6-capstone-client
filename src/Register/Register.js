@@ -28,18 +28,16 @@ class Register extends Component {
     updateConfirmPassword(confirm_password) {
         this.setState({confirm_password: confirm_password});
     }
-     // if (this.state.password === this.state.confirm_password) {
+      // if (this.state.password === this.state.confirm_password) {
         //     this.setState(
         //         {error: "PASSWORDS DO NOT MATCH"})
-            
         // }
-        // const user = {
-
     handleSubmit(e) {
         e.preventDefault();
         this.setState({
             error: null
         });
+       
         AuthApiService.postUser({
             user_name: this.state.user_name,
             user_email: this.state.user_email,
