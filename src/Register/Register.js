@@ -28,6 +28,11 @@ class Register extends Component {
 
     handleSubmit(e) {
         e.preventDefault();
+        if (this.state.password === this.state.confirm_password) {
+            this.setState(
+                {error: "PASSWORDS DO NOT MATCH"})
+            
+        }
         const user = {
             user_name: this.state.user_name,
             user_email: this.state.user_email,
