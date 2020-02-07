@@ -1,65 +1,62 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import LineGraph from '../GraphTemplates/LineGraph'
-import ScatterAnimation from '../GraphTemplates/ScatterAnimation'
-
+import BarGraph from '../GraphTemplates/BarGraph'
+import Scatterplot from '../GraphTemplates/Scatterplot'
 const { API_ENDPOINT } = require('../config')
 
 class GraphList extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            results: [],
+            userGraphs: [],
+            jsxGraph: ''
         }
     }
 
-    componentDidMount() {
+    mapGraphs() {
+        const { userGraphs } = this.state
+        const graphs = userGraphs.map(graph => {
+            return <Link key={graph.id} to={`/graph/${graph.table_type}/${graph.id}`}>Hello</Link>
+        })
+        console.log(graphs)
+        this.setState({jsxGraph:graphs})
+    }
 
+    componentDidMount() {
         fetch(`${API_ENDPOINT}/data`, {
             method: 'GET',
             headers: {
                 'content-type': 'application/json', 
                 'user_id': localStorage.userId
-                
             }
         })
-            .then(response => {
-                if (response.ok) {
-                    return response.json()
-                } else {
-                    throw new Error('something went wrong')
-                }
-            })
-            .then(response =>
-                this.setState({
-                    results: 
-                    response.filter(r => {
-                        return r.table_name === 'JavaScript'
-                    })    
-                })          
-            )
+        .then(res => {
+            if (!res.ok) {
+                return res.json().then(error => {
+                    throw error
+                })
+            }
+            return res.json()
+        })
+        .then(data => {
+            console.log(data)
+            this.setState({userGraphs:data})
+            this.mapGraphs()
+        })
+        .catch(error => {
+            console.error(error)
+        })
     }
-    
-    render() {
-        const { results } = this.state
 
+    render() {  
         return (
             <>
                 <h2>GraphList</h2>
                 <Link to={'/addGraph'}>
                     <button className="bigBtn">New Graph</button>
                 </Link>
-
-                <h2>API Line Graph</h2>
-                <LineGraph data={results} />
-                <h2>API Graph</h2>
-
-                <h2>Scatter Animation</h2>
-                <ScatterAnimation  />
-
-                <Link to={'/addGraph'}>
-                    <button>New Graph</button>
-                </Link>
+                {this.state.jsxGraph}
             </>
         )
     }

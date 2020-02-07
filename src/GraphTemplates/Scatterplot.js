@@ -19,8 +19,6 @@ export default class LineGraph extends React.Component {
             tableName: 'NA',
             dataResult: [],
         }
-
-        console.log('inside LineGraph', this.props)
     }
 
     updateState = (data, table) => {
@@ -28,7 +26,6 @@ export default class LineGraph extends React.Component {
             dataResult: validateData(data),
             tableName: table,
         })
-        console.log('updated state', this.state)
     }
     componentDidMount = () => {
         fetch(`${API_ENDPOINT}/data/${this.state.tableId}`, {
@@ -55,22 +52,6 @@ export default class LineGraph extends React.Component {
     }
 
     render() {
-        console.log('state in render', this.state)
-        const sampleData = [
-            { "x": 0, "y": 8 },
-            { "x": 1, "y": 5 },
-            { "x": 2, "y": 4 },
-            { "x": 3, "y": 9 },
-            { "x": 4, "y": 1 },
-            { "x": 5, "y": 7 },
-            { "x": 6, "y": 6 },
-            { "x": 7, "y": 3 },
-            { "x": 8, "y": 2 },
-            { "x": 9, "y": 0 },
-        ]
-
-        console.log('final data state', this.state.dataResult)
-
         return (
             <div>
                 <h3>Scatterplot Project: {this.state.tableName}</h3>

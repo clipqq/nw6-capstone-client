@@ -28,12 +28,18 @@ class Register extends Component {
     updateConfirmPassword(confirm_password) {
         this.setState({confirm_password: confirm_password});
     }
+     // if (this.state.password === this.state.confirm_password) {
+        //     this.setState(
+        //         {error: "PASSWORDS DO NOT MATCH"})
+            
+        // }
+        // const user = {
 
     handleSubmit(e) {
         e.preventDefault();
         this.setState({
             error: null
-          });
+        });
         AuthApiService.postUser({
             user_name: this.state.user_name,
             user_email: this.state.user_email,
@@ -54,32 +60,6 @@ class Register extends Component {
             });
           });
     }
-    
-    // addUser(user) {
-    //     fetch(`${API_ENDPOINT}/user`, {
-    //         method: 'POST',
-    //         body: user,
-    //         headers: {
-    //             'content-type': 'application/json'
-    //         }
-    //     })
-    //     .then(res=>{
-    //         if(!res.ok){
-    //             throw res
-    //         }
-    //         return res.json()
-    //     })
-    //     .then(data=>
-    //         this.props.routeProps.history.push("/login")
-    //     )
-    //     .catch(err => {
-    //         if(err.status===400){
-    //             this.setState(
-    //                 {error: "USERNAME OR EMAIL ALREADY TAKEN! PLEASE CHANGE"})
-    //         }
-    //         console.log('this is the err',err)
-    //         })
-    // }
     render() {
         const { error } = this.state;
         return (
