@@ -3,8 +3,6 @@ import LineGraph from '../GraphTemplates/LineGraph'
 import BarGraph from '../GraphTemplates/BarGraph'
 import Scatterplot from '../GraphTemplates/Scatterplot'
 
-// const { API_ENDPOINT } = require('../config')
-
 class Graph extends Component {
     constructor(props) {
         super(props)
@@ -15,38 +13,6 @@ class Graph extends Component {
         }
         console.log('graph id from params', this.props.match.params.graph_id)
     }
-
-    // updateState = (data, table) => {
-    //     this.setState({
-    //         dataResult: data,
-    //         tableName: table,
-    //     })
-    //     console.log('graph state', this.state)
-    // }
-    // componentDidMount = () => {
-    //     fetch(`${API_ENDPOINT}/data/${this.state.tableId}`, {
-    //         method: 'GET',
-    //         headers: {
-    //             'Content-Type': 'application/json',
-    //             user_id: this.state.userId,
-    //         },
-    //     })
-    //         .then(res => {
-    //             if (!res.ok) {
-    //                 return res.json().then(error => {
-    //                     throw error
-    //                 })
-    //             }
-    //             return res.json()
-    //         })
-    //         .then(res => {
-    //             this.updateState(res.data, res.table_name)
-    //             console.log('props passed', this.state)
-    //         })
-    //         .catch(error => {
-    //             console.error(error)
-    //         })
-    // }
 
     render() {
         return (
