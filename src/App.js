@@ -27,7 +27,7 @@ function App() {
           <Switch>
           <Route exact path='/' component={Landing} />
           <Route exact path='/graph' render={(routeProps) => <GraphList routeProps={routeProps}/>}/>
-          <Route exact path='/graph/:graph_id' component={Graph}/>
+          <Route exact path='/graph/:table_type/:graph_id' component={Graph}/>
           <Route exact path='/addGraph' component={AddGraph}/>
           <Route exact path='/editGraph' component={EditGraph}/>
           <Route exact path='/register' render={(routeProps) => <Register routeProps={routeProps}/>}/>

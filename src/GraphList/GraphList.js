@@ -17,7 +17,7 @@ class GraphList extends Component {
     mapGraphs() {
         const { userGraphs } = this.state
         const graphs = userGraphs.map(graph => {
-            return <Link to={`/graph/${graph.id}`}>Hello</Link>
+            return <Link key={graph.id} to={`/graph/${graph.table_type}/${graph.id}`}>Hello</Link>
         })
         console.log(graphs)
         this.setState({jsxGraph:graphs})
