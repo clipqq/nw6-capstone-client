@@ -71,6 +71,7 @@ export default class LineGraph extends React.Component {
                             line: { stroke: 'black' },
                             ticks: { stroke: 'black' },
                         }}
+                        tickLabelAngle={-45}
                     />
                     <MarkSeries
                         data={this.state.dataResult}

@@ -71,6 +71,7 @@ export default class BarGraph extends React.Component {
                             line: {stroke: 'black'},
                             ticks: { stroke: 'black' },
                         }}
+                        tickLabelAngle={-45}
                     />
                     <VerticalBarSeries
                         data={this.state.dataResult}
