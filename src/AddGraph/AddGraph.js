@@ -42,7 +42,6 @@ class AddGraph extends Component {
     }
 
     addGraph(data, title, type) {
-        console.log(type)
         fetch(`${API_ENDPOINT}/data`, {
             method: 'POST',
             body: data,
@@ -62,7 +61,6 @@ class AddGraph extends Component {
                 return res.json()
             })
             .then(data => {
-                console.log(data)
                 this.props.routeProps.history.push('/graph')
             })
             .catch(error => {
