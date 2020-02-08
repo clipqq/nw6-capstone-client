@@ -17,15 +17,15 @@ A live version of the app can be found at [https://wtd-omega.now.sh/](https://wt
  
 ## Quick App Demo
 
-[Imgur](https://i.imgur.com/1WjQhpN.png)
-[Imgur](https://i.imgur.com/wEpWPjt.png)
-[Imgur](https://i.imgur.com/tkWVr1g.png)
-[Imgur](https://i.imgur.com/Q0rkvVW.png)
-[Imgur](https://i.imgur.com/FWbeWN2.png)
-[Imgur](https://i.imgur.com/3ZeyFbF.png)
-[Imgur](https://i.imgur.com/CKuaCUo.png)
-[Imgur](https://i.imgur.com/0cBdnpD.png)
-[Imgur](https://i.imgur.com/0tg7oEE.png)
+![Imgur](https://i.imgur.com/1WjQhpN.png)
+![Imgur](https://i.imgur.com/wEpWPjt.png)
+![Imgur](https://i.imgur.com/tkWVr1g.png)
+![Imgur](https://i.imgur.com/Q0rkvVW.png)
+![Imgur](https://i.imgur.com/FWbeWN2.png)
+![Imgur](https://i.imgur.com/3ZeyFbF.png)
+![Imgur](https://i.imgur.com/CKuaCUo.png)
+![Imgur](https://i.imgur.com/0cBdnpD.png)
+![Imgur](https://i.imgur.com/0tg7oEE.png)
 
 ## Team
 
