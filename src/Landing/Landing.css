@@ -10,13 +10,6 @@ img {
 }
 
 @media screen and (min-width: 768px) {
-    /* .land{
-        margin-top: 100px;
-    }
-    img {
-        width: 30%;
-    } */
-
     .arrow {
         margin-bottom: 60px;
     }

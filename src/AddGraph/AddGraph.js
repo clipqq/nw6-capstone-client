@@ -63,7 +63,7 @@ class AddGraph extends Component {
             })
             .then(data => {
                 console.log(data)
-                this.props.history.push('/graph')
+                this.props.routeProps.history.push('/graph')
             })
             .catch(error => {
                 console.error(error)
@@ -73,11 +73,10 @@ class AddGraph extends Component {
     render() {
         return (
             <>
-                <h1>Add Graph</h1>
+                <h2>Add Graph</h2>
                 <div className="login">
                     <div className="form-group">
                         <label htmlFor="title">Title:</label>
-
                         <input required type="title" name="title" id="title" onChange={e => this.updateTitle(e.target.value)}/>
                         <label htmlFor="type">Type:</label>
                         <select required type="type" name="type" id="type" onChange={e => this.updateType(e.target.value)}>
@@ -88,7 +87,6 @@ class AddGraph extends Component {
                         <label htmlFor="file">File:</label>
                         <ReactFileReader handleFiles={this.handleFiles} fileTypes={'.csv'}>
                             <button className='btn'>Upload</button>
-
                         </ReactFileReader>
                         <div className="buttons">
                             <button

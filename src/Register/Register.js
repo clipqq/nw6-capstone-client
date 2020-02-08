@@ -28,20 +28,68 @@ class Register extends Component {
     updateConfirmPassword(confirm_password) {
         this.setState({confirm_password: confirm_password});
     }
-      // if (this.state.password === this.state.confirm_password) {
-        //     this.setState(
-        //         {error: "PASSWORDS DO NOT MATCH"})
-        // }
-    handleSubmit(e) {
-        e.preventDefault();
-        this.setState({
-            error: null
-        });
+
+
+    // handleSubmit(e) {
+    //     e.preventDefault();
+    //     if (this.state.password !== this.state.confirm_password) {
+    //         console.log('check')
+    //         this.setState({error: "PASSWORDS DO NOT MATCH"})
+    //     }
+
+    //     this.setState({
+    //         error: null
+    //     });
        
-        AuthApiService.postUser({
+    //     AuthApiService.postUser({
+    //         user_name: this.state.user_name,
+    //         user_email: this.state.user_email,
+    //         password: this.state.password
+    //     })
+    //     .then(res=>{
+    //         if(!res.ok){
+    //             throw res
+    //         }
+    //         return res.json()
+    //     })
+    //     .then(data=>
+    //         this.props.routeProps.history.push("/login")
+    //     )
+    //     .catch(res => {
+    //         this.setState({
+    //           error: res.error
+    //         });
+    //       });
+    // }
+
+
+    handleSubmit(e) {
+        console.log('submit')
+        e.preventDefault();
+        if (this.state.password !== this.state.confirm_password) {
+            this.setState({error: "PASSWORDS DO NOT MATCH"})
+        } else {
+            console.log('else')
+            this.setState({
+                error: null
+            });
+            this.addUser()
+        }
+    }
+
+    addUser() {
+        console.log('add')
+        const user = {
             user_name: this.state.user_name,
             user_email: this.state.user_email,
             password: this.state.password
+        }
+        fetch(`${API_ENDPOINT}/user`, {
+            method: 'POST',
+            body: JSON.stringify(user),
+            headers: {
+                'content-type': 'application/json'
+            }
         })
         .then(res=>{
             if(!res.ok){
@@ -49,16 +97,45 @@ class Register extends Component {
             }
             return res.json()
         })
-        .then(data=>
-            this.props.routeProps.history.push("/login")
-        )
-        .catch(res => {
-            this.setState({
-              error: res.error
-            });
-          });
+        .then(data => { 
+            console.log('data', data)
+            this.props.routeProps.history.push('/login')
+        })
+        .catch(err => {
+            if(err.status===400){
+                this.setState({error: "INCORRECT USERNAME OR PASSWORD"})
+            }
+        })
     }
+
+    // addUser() {
+    //     console.log('add')
+
+    //     AuthApiService.postUser({
+    //         user_name: this.state.user_name,
+    //         user_email: this.state.user_email,
+    //         password: this.state.password
+    //     })
+    //     .then(res=>{
+    //         if(!res.ok){
+    //             throw res
+    //         }
+    //         return res.json()
+    //     })
+    //     .then(data=>
+    //         console.log(data)
+    //         // this.props.routeProps.history.push("/login")
+    //         )
+    //         .catch(res => {
+    //         this.setState({
+    //             error: res.error
+    //         });
+    //     });
+    // }
+        
+
     render() {
+        // console.log(this.state)
         const { error } = this.state;
         return (
             <div className="login">   
