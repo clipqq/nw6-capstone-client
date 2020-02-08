@@ -29,7 +29,7 @@ A live version of the app can be found at [https://wtd-omega.now.sh/](https://wt
 
 ## Team
 
-WTDD was built with 💙 by the following:
+WTDD was built with 🖤 by the following:
 
 * Cliff Tran: [https://github.com/clipqq](https://github.com/clipqq)
 * Queen Shabazz: [https://github.com/QueenShabazz](https://github.com/QueenShabazz)
