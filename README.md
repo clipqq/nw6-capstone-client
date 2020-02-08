@@ -49,6 +49,13 @@ WTDD was built with 🖤 by the following:
   * HTML5
   * React-Vis (Uber)
 
+#### Back End
+
+  * SQL
+  * Node.js
+  * Express.js
+  * Mocha
+
 * Testing
   * Smoketest (integration)
   * Snapshot with Jest and Enzyme
