@@ -1,0 +1,12 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Four Component renders the UI as expected 1`] = `
+Array [
+  "   ",
+  <br />,
+  <br />,
+  <h2>
+    404 NOT FOUND
+  </h2>,
+]
+`;
