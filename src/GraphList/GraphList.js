@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import LineGraph from '../GraphTemplates/LineGraph'
 import BarGraph from '../GraphTemplates/BarGraph'
 import Scatterplot from '../GraphTemplates/Scatterplot'
+import './GraphList.css'
 const { API_ENDPOINT } = require('../config')
 
 class GraphList extends Component {
@@ -18,8 +19,8 @@ class GraphList extends Component {
         const { userGraphs } = this.state
         const graphs = userGraphs.map(graph => {
             return <div>
-                    Name:<Link key={graph.id} to={`/graph/${graph.table_type}/${graph.id}`}>{graph.table_name}</Link> 
-                    Type:<Link key={graph.id} to={`/graph/${graph.table_type}/${graph.id}`}>{graph.table_type}</Link><button>Delete</button>  
+                    Name:<Link className="graph" key={graph.id} to={`/graph/${graph.table_type}/${graph.id}`}>{graph.table_name}</Link> 
+                    Type:<Link className="graph" key={graph.id} to={`/graph/${graph.table_type}/${graph.id}`}>{graph.table_type}</Link><button>Delete</button>  
                 </div>
         })
         console.log(graphs)
