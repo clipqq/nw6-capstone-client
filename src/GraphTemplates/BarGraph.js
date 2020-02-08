@@ -6,60 +6,68 @@ import {
     VerticalGridLines,
     HorizontalGridLines,
     VerticalBarSeries,
-    VerticalBarSeriesCanvas,
-    LabelSeries,
 } from 'react-vis'
+import { validateData } from './GraphUtils/csvUtils'
+const { API_ENDPOINT } = require('../config')
 
-const greenData = [
-    { x: 'A', y: 10 },
-    { x: 'B', y: 5 },
-    { x: 'C', y: 15 },
-]
+export default class BarGraph extends React.Component {
+    constructor(props) {
+        super(props)
+        this.state = {
+            tableId: this.props.tableId,
+            userId: localStorage.getItem('userId'),
+            tableName: 'NA',
+            dataResult: [],
+        }
+    }
 
-const blueData = [
-    { x: 'A', y: 12 },
-    { x: 'B', y: 2 },
-    { x: 'C', y: 11 },
-]
-
-const labelData = greenData.map((d, idx) => ({
-    x: d.x,
-    y: Math.max(greenData[idx].y, blueData[idx].y),
-}))
-
-class BarGraph extends React.Component(props) {
-    state = {
-        useCanvas: false,
+    updateState = (data, table) => {
+        this.setState({
+            dataResult: validateData(data),
+            tableName: table,
+        })
+    }
+    componentDidMount = () => {
+        fetch(`${API_ENDPOINT}/data/${this.state.tableId}`, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                user_id: this.state.userId,
+            },
+        })
+            .then(res => {
+                if (!res.ok) {
+                    return res.json().then(error => {
+                        throw error
+                    })
+                }
+                return res.json()
+            })
+            .then(res => {
+                this.updateState(res.data, res.table_name)
+            })
+            .catch(error => {
+                console.error(error)
+            })
     }
 
     render() {
-        const { useCanvas } = this.state
-        // const content = useCanvas ? 'TOGGLE TO SVG' : 'TOGGLE TO CANVAS';
-        const BarSeries = useCanvas
-            ? VerticalBarSeriesCanvas
-            : VerticalBarSeries
         return (
             <div>
-                <XYPlot
-                    xType="ordinal"
-                    width={300}
-                    height={300}
-                    xDistance={100}
-                >
+                <h3>Bar Graph Project: {this.state.tableName}</h3>
+
+                <XYPlot height={300} width={300}>
                     <VerticalGridLines />
                     <HorizontalGridLines />
                     <XAxis />
                     <YAxis />
-                    <BarSeries
-                        className="vertical-bar-series-example"
-                        data={greenData}
+                    {/* <LineSeries data={sampleData} style={{ fill: 'none' }} /> */}
+                    <VerticalBarSeries
+                        data={this.state.dataResult}
+                        style={{ fill: 'none' }}
                     />
-                    <BarSeries data={blueData} />
-                    <LabelSeries data={labelData} getLabel={d => d.x} />
                 </XYPlot>
             </div>
         )
     }
 }
-
-export default BarGraph
