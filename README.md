@@ -68,7 +68,7 @@ Please follow the API README on how to get the server up and running.
 
 Then:
 
-1) Start the laconic-api server with `npm run dev`
+1) Start the api server with `npm run dev`
 2) Clone this repo
 3) Run `npm install`
 4) Run `npm start`
