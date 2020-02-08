@@ -49,6 +49,13 @@ WTDD was built with 🖤 by the following:
   * HTML5
   * React-Vis (Uber)
 
+  * Testing
+  * Smoketest (integration)
+  * Snapshot with Jest and Enzyme
+* Http Request
+  * Fetch
+
+
 #### Back End
 
   * SQL
@@ -56,11 +63,6 @@ WTDD was built with 🖤 by the following:
   * Express.js
   * Mocha
 
-* Testing
-  * Smoketest (integration)
-  * Snapshot with Jest and Enzyme
-* Http Request
-  * Fetch
 
 
 #### Production
