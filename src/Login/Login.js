@@ -43,11 +43,9 @@ class Login extends Component {
             return res.json()
         })
         .then(data => { 
-            console.log('data', data)
             localStorage.setItem("authToken", data.authToken)
             localStorage.setItem("userId", data.user_id)
             this.props.routeProps.history.push('/graph')
-            console.log('LOCAL STOR', localStorage, data)
         })
         .catch(err => {
             if(err.status===400){
