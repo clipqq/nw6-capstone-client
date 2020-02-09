@@ -1,27 +1,20 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import AddGraph from './AddGraph';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import Four from './404';
 import renderer from 'react-test-renderer';
 
-describe('AddGraph Component', () => {
+describe('Four Component', () => {
   it('renders without crashing', () => {
     const div = document.createElement('div');
     ReactDOM.render(
-        <Route>
-          <AddGraph />
-        </Route>
-        
+        < Four />
     , div);
     ReactDOM.unmountComponentAtNode(div);
   });
 
   it('renders the UI as expected', () => {
     const tree = renderer
-      .create(
-        <Route>
-          <AddGraph/>
-        </Route>)
+      .create(<Four/>)
       .toJSON();
     expect(tree).toMatchSnapshot();  
   });

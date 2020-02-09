@@ -1,68 +1,83 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# WTDD
+WTDD enables users to create visual representations of data from their csv files. Users will be able to graph x y coordinates, and representing them visually as bar, line, and scatter plot graphs. Make it easy for students/non-technical people to make graphs and charts.
 
-## Available Scripts
 
-In the project directory, you can run:
+The code for the back end server can be found at 
+[https://github.com/clipqq/nw6-capstone-server]
+(https://github.com/clipqq/nw6-capstone-server).
 
-### `npm start`
+The code for the client can be found at 
+[https://github.com/clipqq/nw6-capstone-client]
+(https://github.com/clipqq/nw6-capstone-client).
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+## Live Link
+A live version of the app can be found at [https://wtd-omega.now.sh/](https://wtd-omega.now.sh/)
+ 
+## Quick App Demo
 
-### `npm test`
+![Imgur](https://i.imgur.com/1WjQhpN.png)
+![Imgur](https://i.imgur.com/wEpWPjt.png)
+![Imgur](https://i.imgur.com/tkWVr1g.png)
+![Imgur](https://i.imgur.com/Q0rkvVW.png)
+![Imgur](https://i.imgur.com/FWbeWN2.png)
+![Imgur](https://i.imgur.com/3ZeyFbF.png)
+![Imgur](https://i.imgur.com/CKuaCUo.png)
+![Imgur](https://i.imgur.com/0cBdnpD.png)
+![Imgur](https://i.imgur.com/0tg7oEE.png)
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Team
 
-### `npm run build`
+WTDD was built with 🖤 by the following:
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+* Cliff Tran: [https://github.com/clipqq](https://github.com/clipqq)
+* Queen Shabazz: [https://github.com/QueenShabazz](https://github.com/QueenShabazz)
+* Tony Bento: [https://github.com/GLWolf](https://github.com/GLWolf)
+* Anthony Gelder: [https://github.com/anthonygelder](https://github.com/anthonygelder)
+* Justin Jeffrey: [https://github.com/Thersis94](https://github.com/Thersis94)
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+## Technology
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+#### Front End
 
-### `npm run eject`
+* React and OAuth
+  * RESTful Api
+  * Javascript (ES6)
+  * React.js 
+  * CSS3
+  * HTML5
+  * React-Vis (Uber)
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+  * Testing
+  * Smoketest (integration)
+  * Snapshot with Jest and Enzyme
+* Http Request
+  * Fetch
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
 
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+#### Back End
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+  * SQL
+  * Node.js
+  * Express.js
+  * Mocha
 
-## Learn More
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+#### Production
 
-### Code Splitting
+Deployed via Zeit
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
+## Running Locally
 
-### Analyzing the Bundle Size
+To get the WTDD client running successfully in development, you'll also need to have the WTDD api running locally (links above).  
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
+Please follow the API README on how to get the server up and running.
 
-### Making a Progressive Web App
+Then:
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
+1) Start the api server with `npm run dev`
+2) Clone this repo
+3) Run `npm install`
+4) Run `npm start`
 
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify

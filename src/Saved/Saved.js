@@ -1,9 +1,8 @@
-import './Register.css'
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import { Link } from 'react-router-dom'
 const { API_ENDPOINT } = require('../config')
 
-class Register extends Component {
+class Saved extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -13,9 +12,7 @@ class Register extends Component {
             confirm_password: ''
         }
     }
-    state = {
-        error: null
-      };
+
     updateEmail(user_email) {
         this.setState({user_email: user_email});
     }
@@ -31,25 +28,18 @@ class Register extends Component {
 
     handleSubmit(e) {
         e.preventDefault();
-        if (this.state.password !== this.state.confirm_password) {
-            this.setState({error: "PASSWORDS DO NOT MATCH"})
-        } else {
-            this.setState({
-                error: null
-            });
-            this.addUser()
-        }
-    }
-
-    addUser() {
         const user = {
             user_name: this.state.user_name,
             user_email: this.state.user_email,
             password: this.state.password
         }
-        fetch(`${API_ENDPOINT}user`, {
+        this.addUser(JSON.stringify(user))
+    }
+    
+    addUser(user) {
+        fetch(`${API_ENDPOINT}/user`, {
             method: 'POST',
-            body: JSON.stringify(user),
+            body: user,
             headers: {
                 'content-type': 'application/json'
             }
@@ -60,21 +50,26 @@ class Register extends Component {
             }
             return res.json()
         })
-        .then(data => { 
-            this.props.routeProps.history.push('/login')
-        })
+        .then(data=>
+            this.props.history.push(`/login`)
+        )
         .catch(err => {
             if(err.status===400){
-                this.setState({error: "INCORRECT USERNAME OR PASSWORD"})
+                this.setState(
+                    {error: "USERNAME OR EMAIL ALREADY TAKEN! PLEASE CHANGE"})
             }
-        })
+            console.log('this is the err',err)
+            })
     }
-
     render() {
-        const { error } = this.state;
         return (
             <div className="login">   
-            <section role='alert'> {error && <p className='red'> {error} </p>} </section>{' '}     
+             {/* {
+                this.state.error !== "" && 
+                <section id='error'>
+                    {this.state.error}
+                </section>
+            }     
                 <h2>Register</h2>
                 <form className="form-group" onSubmit={e => this.handleSubmit(e)}>
                     <label htmlFor="email">Email</label>
@@ -82,9 +77,9 @@ class Register extends Component {
                     <label htmlFor="name">Username</label>
                     <input required type="name" name="name" id="name" onChange={e => this.updateName(e.target.value)}/>
                     <label htmlFor="password">Password</label>
-                    <input required type="password" name="password" id="password" onChange={e => this.updatePassword(e.target.value)}/>
+                    <input required type="text" name="password" id="password" onChange={e => this.updatePassword(e.target.value)}/>
                     <label htmlFor="confirm_password">Confirm Password</label>
-                    <input required type="password" name="confirm_password" id="confirm_password" onChange={e => this.updateConfirmPassword(e.target.value)}/>
+                    <input required type="text" name="confirm_password" id="confirm_password" onChange={e => this.updateConfirmPassword(e.target.value)}/>
                     <div className="buttons">
                         <button type="submit">
                             Register
@@ -93,10 +88,10 @@ class Register extends Component {
                             <button>Back</button>
                         </Link>
                     </div>
-                </form>
+                </form> */}
             </div>
         );
     }
 }
 
-export default Register;
+export default Saved;

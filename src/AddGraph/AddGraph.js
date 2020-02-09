@@ -1,50 +1,45 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import ReactFileReader from 'react-file-reader'
 import config from '../config'
-
+import './AddGraph.css'
 const csv = require('csvtojson')
 const { API_ENDPOINT } = require('../config')
 
 class AddGraph extends Component {
     constructor(props) {
-        super(props);
+        super(props)
         this.state = {
             title: '',
+            type: 'line',
             data: []
         }
-        this.updateData = this.updateData.bind(this);
-
     }
 
     updateTitle(title) {
-        this.setState({title: title});
+        this.setState({ title: title })
     }
 
-    updateData(data) {
-        console.log('update')
-        this.setState({data: data})
+    updateType(type) {
+        this.setState({type: type});
     }
 
     handleSubmit(e) {
         e.preventDefault();
-        this.addGraph(this.state.data, this.state.title)
+        this.addGraph(this.state.data, this.state.title, this.state.type)
     }
-
 
     handleFiles = async (files) => {
         let reader = new FileReader();
-        reader.onload = function(e) {
+          reader.onload = function(e) {
             const csvStr = reader.result
             csv()
                 .fromString(csvStr)
-                .then((jsonObj) => {
-                        console.log(jsonObj);
-                        this.setState({data: jsonObj})
-                        console.log(this.state)
-                    })
-            }.bind(this)
-        reader.readAsText(files[0]);
+                .then(jsonObj => {
+                    this.setState({ data: JSON.stringify(jsonObj) })
+                })
+        }.bind(this)
+        reader.readAsText(files[0])
     }
 
     addGraph(data, title, cb) {
@@ -54,35 +49,42 @@ class AddGraph extends Component {
             body: data,
             headers: {
                 'content-type': 'application/json',
-                'user_id': 1,
-                'table_name': title
+                'user_id': localStorage.getItem("userId"),
+                'table_name': title,
+                'table_type': type
             },
         })
-        .then(res => {
-            if (!res.ok) {
-                return res.json().then(error => {
-                    throw error
-                })
+            .then(res => {
+                if (!res.ok) {
+                    return res.json().then(error => {
+                        throw error
+                    })
                 }
                 return res.json()
             })
             .then(data => {
-                // this.props.routeProps.history.push('/graph')
-                // cb(data)
+                this.props.routeProps.history.push('/graph')
             })
             .catch(error => {
                 console.error(error)
-        })
+            })
     }
 
     render() {
         return (
-            <>        
-                <h1>Add Graph</h1>
-                <div className="login">        
-                    <div className="form-group" >
+            <>
+                <h2>Add Graph</h2>
+                <div className="login">
+                    <div className="form-group">
                         <label htmlFor="title">Title:</label>
-                        <input required type="title" name="title" id="title" value={ this.state.title } onChange={e => this.updateTitle(e.target.value)}/>
+                        <input required type="title" name="title" id="title" onChange={e => this.updateTitle(e.target.value)}/>
+                        <label htmlFor="type">Type:</label>
+                        <select required type="type" name="type" id="type" onChange={e => this.updateType(e.target.value)}>
+                            <option defaultValue value="line">Line</option>
+                            <option value="bar">Bar</option>
+                            <option value="scatter">Scatter</option>
+                        </select>
+                        <label htmlFor="file">File:</label>
                         <ReactFileReader handleFiles={this.handleFiles} fileTypes={'.csv'}>
                             <button className='btn'>Upload</button>
                         </ReactFileReader>
@@ -90,14 +92,14 @@ class AddGraph extends Component {
                             <button type="submit" onClick={this.addGraph} >
                                 Create
                             </button>
-                            <Link to='/graph'>
+                            <Link to="/graph">
                                 <button>Back</button>
                             </Link>
                         </div>
                     </div>
                 </div>
             </>
-        );
+        )
     }
 }
 

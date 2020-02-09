@@ -1,50 +1,89 @@
-import React from 'react';
+import React from 'react'
 import {
-  XYPlot,
-  XAxis,
-  YAxis,
-  VerticalGridLines,
-  HorizontalGridLines,
-  VerticalBarSeries,
-  VerticalBarSeriesCanvas,
-  LabelSeries
-} from 'react-vis';
+    XYPlot,
+    XAxis,
+    YAxis,
+    VerticalGridLines,
+    HorizontalGridLines,
+    VerticalBarSeries,
+} from 'react-vis'
+import { validateData } from './GraphUtils/csvUtils'
+const { API_ENDPOINT } = require('../config')
 
+export default class BarGraph extends React.Component {
+    constructor(props) {
+        super(props)
+        this.state = {
+            tableId: this.props.tableId,
+            userId: localStorage.getItem('userId'),
+            tableName: 'NA',
+            dataResult: [],
+        }
+    }
 
+    updateState = (data, table) => {
+        this.setState({
+            dataResult: validateData(data),
+            tableName: table,
+        })
+    }
+    componentDidMount = () => {
+        fetch(`${API_ENDPOINT}/data/${this.state.tableId}`, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                user_id: this.state.userId,
+            },
+        })
+            .then(res => {
+                if (!res.ok) {
+                    return res.json().then(error => {
+                        throw error
+                    })
+                }
+                return res.json()
+            })
+            .then(res => {
+                this.updateState(res.data, res.table_name)
+            })
+            .catch(error => {
+                console.error(error)
+            })
+    }
 
-const greenData = [{x: 'A', y: 10}, {x: 'B', y: 5}, {x: 'C', y: 15}];
+    render() {
+        return (
+            <div>
+                <h3>Bar Graph Project: {this.state.tableName}</h3>
 
-const blueData = [{x: 'A', y: 12}, {x: 'B', y: 2}, {x: 'C', y: 11}];
-
-const labelData = greenData.map((d, idx) => ({
-  x: d.x,
-  y: Math.max(greenData[idx].y, blueData[idx].y)
-}));
-
-class BarGraph extends React.Component {
-  state = {
-    useCanvas: false
-  };
-
-  render() {
-    const {useCanvas} = this.state;
-    // const content = useCanvas ? 'TOGGLE TO SVG' : 'TOGGLE TO CANVAS';
-    const BarSeries = useCanvas ? VerticalBarSeriesCanvas : VerticalBarSeries;
-    return (
-      <div>
-
-        <XYPlot xType="ordinal" width={300} height={300} xDistance={100}>
-          <VerticalGridLines />
-          <HorizontalGridLines />
-          <XAxis />
-          <YAxis />
-          <BarSeries className="vertical-bar-series-example" data={greenData} />
-          <BarSeries data={blueData} />
-          <LabelSeries data={labelData} getLabel={d => d.x} />
-        </XYPlot>
-      </div>
-    );
-  }
+                <XYPlot
+                    height={300}
+                    width={375}
+                    margin={{ left: 75, bottom: 75 }}
+                    stackBy="x"
+                >
+                    <VerticalGridLines />
+                    <HorizontalGridLines />
+                    <XAxis
+                        style={{
+                            line: { stroke: 'black' },
+                            ticks: { stroke: 'black' },
+                        }}
+                        tickLabelAngle={-45}
+                    />
+                    <YAxis
+                        style={{
+                            line: { stroke: 'black' },
+                            ticks: { stroke: 'black' },
+                        }}
+                        tickLabelAngle={-45}
+                    />
+                    <VerticalBarSeries
+                        data={this.state.dataResult}
+                        style={{ fill: 'green' }}
+                    />
+                </XYPlot>
+            </div>
+        )
+    }
 }
-
-export default BarGraph
