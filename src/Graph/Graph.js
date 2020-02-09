@@ -18,8 +18,7 @@ class Graph extends Component {
             return (
                 <>
                     <h1>Graph</h1>
-                    <h2>Line Graph* of your data</h2>
-                    <p>* this should return graph type from server</p>
+                    <h2>Line Graph of your data</h2>
                     <LineGraph tableId={this.state.tableId} />
                 </>
             )
@@ -27,8 +26,7 @@ class Graph extends Component {
             return (
                 <>
                     <h1>Graph</h1>
-                    <h2>Line Graph* of your data</h2>
-                    <p>* this should return graph type from server</p>
+                    <h2>Bar Graph of your data</h2>
                     <BarGraph tableId={this.state.tableId} />
                 </>
             )
@@ -36,8 +34,7 @@ class Graph extends Component {
             return (
                 <>
                     <h1>Graph</h1>
-                    <h2>Line Graph* of your data</h2>
-                    <p>* this should return graph type from server</p>
+                    <h2>Scatterplot of your data</h2>
                     <Scatterplot tableId={this.state.tableId} />
                 </>
             )
