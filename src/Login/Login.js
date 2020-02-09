@@ -72,12 +72,21 @@ class Login extends Component {
             <div className="login">        
                 <h1>Login</h1>
                 <div className="form-group">
+<<<<<<< HEAD
                     <label htmlFor="email">Email</label>
                     <input required type="email" name="email" id="email" placeholder="Email@url.com" value={ this.state.email } onChange={e => this.updateEmail(e.target.value)}/>
                     <label htmlFor="password">Password</label>
                     <input required type="text" name="password" id="password" placeholder="Password" value={ this.state.password } onChange={e => this.updatePassword(e.target.value)}/>
+=======
+                <label htmlFor="email">UserName:</label>
+                    <input required type="text" name="user_name" id="user_name" value={ this.state.user_name } onChange={e => this.updateName(e.target.value)}/>
+                    <label htmlFor="email">Email:</label>
+                    <input required type="email" name="email" id="email" value={ this.state.user_email } onChange={e => this.updateEmail(e.target.value)}/>
+                    <label htmlFor="password">Password:</label>
+                    <input required type="text" name="password" id="password" value={ this.state.password } onChange={e => this.updatePassword(e.target.value)}/>
+>>>>>>> 9e2ca59d4939e65b61a8f5693bcd7eb433762042
                     <div className="buttons">
-                        <button  onClick={this.login}type="submit">
+                        <button  onClick={this.login} type="submit">
                             Login
                         </button>
                         <Link to='/'>

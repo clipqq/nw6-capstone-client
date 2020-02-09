@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom'
 import ReactFileReader from 'react-file-reader'
+import config from '../config'
+
 const csv = require('csvtojson')
 const { API_ENDPOINT } = require('../config')
 
@@ -38,7 +40,10 @@ class AddGraph extends Component {
     //     }.bind(this))
     // }
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 9e2ca59d4939e65b61a8f5693bcd7eb433762042
 
     handleFiles = async (files) => {
         let reader = new FileReader();
@@ -70,7 +75,11 @@ class AddGraph extends Component {
 
     addGraph(data, title, cb) {
         console.log('add')
+<<<<<<< HEAD
         fetch(`${API_ENDPOINT}data`, {
+=======
+        fetch(`${config.API_ENDPOINT}/data`, {
+>>>>>>> 9e2ca59d4939e65b61a8f5693bcd7eb433762042
             method: 'POST',
             body: data,
             headers: {
@@ -108,7 +117,7 @@ class AddGraph extends Component {
                             <button className='btn'>Upload</button>
                         </ReactFileReader>
                         <div className="buttons">
-                            <button type="submit" >
+                            <button type="submit" onClick={this.addGraph} >
                                 Create
                             </button>
                             <Link to='/graph'>
