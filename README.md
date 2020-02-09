@@ -1,6 +1,5 @@
 # WTDD
-
-WTDD enables users to create visual representatios of data from their csv files. Users will be able to graph x y coordinates, and representing them visually as bar, line, and scatter plot graphs. Make it easy for students/non-technical people to make graphs and charts.
+WTDD enables users to create visual representations of data from their csv files. Users will be able to graph x y coordinates, and representing them visually as bar, line, and scatter plot graphs. Make it easy for students/non-technical people to make graphs and charts.
 
 
 The code for the back end server can be found at 
@@ -81,3 +80,4 @@ Then:
 2) Clone this repo
 3) Run `npm install`
 4) Run `npm start`
+
