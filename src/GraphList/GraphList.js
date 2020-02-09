@@ -13,7 +13,6 @@ class GraphList extends Component {
     }
 
     deleteGraph(id, e) {
-        console.log('delete')
         fetch(`${API_ENDPOINT}/data/${id}`, {
             method: 'DELETE',
             headers: {
@@ -53,7 +52,6 @@ class GraphList extends Component {
                 </div>
             )
         })
-        console.log(graphs)
         this.setState({jsxGraph:graphs})
     }
 
@@ -74,7 +72,6 @@ class GraphList extends Component {
             return res.json()
         })
         .then(data => {
-            console.log(data)
             this.setState({userGraphs:data})
             this.mapGraphs()
         })

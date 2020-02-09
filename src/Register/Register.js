@@ -30,12 +30,10 @@ class Register extends Component {
     }
 
     handleSubmit(e) {
-        console.log('submit')
         e.preventDefault();
         if (this.state.password !== this.state.confirm_password) {
             this.setState({error: "PASSWORDS DO NOT MATCH"})
         } else {
-            console.log('else')
             this.setState({
                 error: null
             });
@@ -44,7 +42,6 @@ class Register extends Component {
     }
 
     addUser() {
-        console.log('add')
         const user = {
             user_name: this.state.user_name,
             user_email: this.state.user_email,
@@ -64,7 +61,6 @@ class Register extends Component {
             return res.json()
         })
         .then(data => { 
-            console.log('data', data)
             this.props.routeProps.history.push('/login')
         })
         .catch(err => {

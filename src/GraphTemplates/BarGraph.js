@@ -56,15 +56,31 @@ export default class BarGraph extends React.Component {
             <div>
                 <h3>Bar Graph Project: {this.state.tableName}</h3>
 
-                <XYPlot height={300} width={300}>
+                <XYPlot
+                    height={300}
+                    width={375}
+                    margin={{ left: 75, bottom: 75 }}
+                    stackBy="x"
+                >
                     <VerticalGridLines />
                     <HorizontalGridLines />
-                    <XAxis />
-                    <YAxis />
-                    {/* <LineSeries data={sampleData} style={{ fill: 'none' }} /> */}
+                    <XAxis
+                        style={{
+                            line: { stroke: 'black' },
+                            ticks: { stroke: 'black' },
+                        }}
+                        tickLabelAngle={-45}
+                    />
+                    <YAxis
+                        style={{
+                            line: { stroke: 'black' },
+                            ticks: { stroke: 'black' },
+                        }}
+                        tickLabelAngle={-45}
+                    />
                     <VerticalBarSeries
                         data={this.state.dataResult}
-                        style={{ fill: 'none' }}
+                        style={{ fill: 'green' }}
                     />
                 </XYPlot>
             </div>

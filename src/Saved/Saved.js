@@ -27,7 +27,6 @@ class Saved extends Component {
     }
 
     handleSubmit(e) {
-        console.log('submit')
         e.preventDefault();
         const user = {
             user_name: this.state.user_name,
@@ -38,7 +37,6 @@ class Saved extends Component {
     }
     
     addUser(user) {
-        console.log(user)
         fetch(`${API_ENDPOINT}/user`, {
             method: 'POST',
             body: user,
