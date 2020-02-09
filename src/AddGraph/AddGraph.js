@@ -32,19 +32,6 @@ class AddGraph extends Component {
     }
 
 
-    // function (){
-    //     this.doFetch().then(function(response){
-    //         this.setState({
-    //             the_message: response.message
-    //         });
-    //     }.bind(this))
-    // }
-
-<<<<<<< HEAD
-
-=======
->>>>>>> 9e2ca59d4939e65b61a8f5693bcd7eb433762042
-
     handleFiles = async (files) => {
         let reader = new FileReader();
         reader.onload = function(e) {
@@ -60,26 +47,9 @@ class AddGraph extends Component {
         reader.readAsText(files[0]);
     }
 
-    // onSearchSubmit = async (term) => {
-    //     const response = await axios
-    //       .get('https://api.unsplash.com/search/photos', {
-    //         params: { query: term },
-    //         headers: {
-    //         Authorization: 'Client-ID'
-    //       }
-    //     })
-    //   this.setState({ images: response.data.results });
-    //   console.log('App this : ', this)
-    //   }
-
-
     addGraph(data, title, cb) {
         console.log('add')
-<<<<<<< HEAD
         fetch(`${API_ENDPOINT}data`, {
-=======
-        fetch(`${config.API_ENDPOINT}/data`, {
->>>>>>> 9e2ca59d4939e65b61a8f5693bcd7eb433762042
             method: 'POST',
             body: data,
             headers: {
@@ -132,5 +102,3 @@ class AddGraph extends Component {
 }
 
 export default AddGraph;
-
-// onClick={e => this.handleSubmit(e)}
