@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import upload from '../img/upload.png'
 import graph from '../img/graph.png'
+import example from '../img/example.png'
 import { IconContext } from "react-icons";
 import { FaLongArrowAltRight } from 'react-icons/fa'
 
@@ -34,6 +35,9 @@ class Landing extends Component {
                 <Link to={'/login'} >
                     <button className='bigBtn'> Get Started</button>
                 </Link>
+                <p>Download the sample CSV above or provide your own.</p>
+                <p>CSV must be in the following format with 2 columns and X and Y headers.</p>
+                <img src={example} alt='example CSV format'/>
             </div>
         );
     }
