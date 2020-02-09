@@ -29,7 +29,7 @@ class Login extends Component {
     }
 
     loginUser(user) {
-        fetch(`${API_ENDPOINT}/auth/login`, {
+        fetch(`${API_ENDPOINT}auth/login`, {
             method: 'POST',
             body: user,
             headers: {
@@ -68,7 +68,7 @@ class Login extends Component {
                     <input required type="password" name="password" id="password" onChange={e => this.updatePassword(e.target.value)}/>
 
                     <div className="buttons">
-                        <button>
+                        <button  onClick={this.login} type="submit">
                             Login
                         </button>
                         <Link to='/'>
