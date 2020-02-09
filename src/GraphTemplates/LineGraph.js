@@ -56,11 +56,23 @@ export default class LineGraph extends React.Component {
             <div>
                 <h3>Project: {this.state.tableName}</h3>
 
-                <XYPlot height={300} width={300}>
+                <XYPlot height={300} width={375} margin={{ left: 75, bottom: 75}} >
                     <VerticalGridLines />
                     <HorizontalGridLines />
-                    <XAxis />
-                    <YAxis />
+                    <XAxis
+                        style={{
+                            line: {stroke: 'black'},
+                            ticks: { stroke: 'black' },
+                        }}
+                        tickLabelAngle={-45}
+                    />
+                    <YAxis
+                        style={{
+                            line: {stroke: 'black'},
+                            ticks: { stroke: 'black' },
+                        }}
+                        tickLabelAngle={-45}
+                    />
                     <LineSeries
                         data={this.state.dataResult}
                         style={{ fill: 'none' }}

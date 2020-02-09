@@ -10,8 +10,6 @@ import GraphList from './GraphList/GraphList'
 import Graph from './Graph/Graph'
 import Login from './Login/Login'
 import Register from './Register/Register'
-import Saved from './Saved/Saved'
-import NotFound from './404Page/404'
 import './App.css';
 
 function App() {
