@@ -17,18 +17,24 @@ class Graph extends Component {
         if(this.state.tableType === 'line') {
             return (
                 <>
+                    <h1>Graph</h1>
+                    <h2>Line Graph of your data</h2>
                     <LineGraph tableId={this.state.tableId} />
                 </>
             )
         } else if (this.state.tableType === 'bar'){
             return (
                 <>
+                    <h1>Graph</h1>
+                    <h2>Bar Graph of your data</h2>
                     <BarGraph tableId={this.state.tableId} />
                 </>
             )
         } else {
             return (
                 <>
+                    <h1>Graph</h1>
+                    <h2>Scatterplot of your data</h2>
                     <Scatterplot tableId={this.state.tableId} />
                 </>
             )
