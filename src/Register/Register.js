@@ -1,8 +1,8 @@
 import './Register.css'
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import AuthApiService from '../services/auth-api-service';
 const { API_ENDPOINT } = require('../config')
+
 class Register extends Component {
     constructor(props) {
         super(props);
@@ -28,40 +28,6 @@ class Register extends Component {
     updateConfirmPassword(confirm_password) {
         this.setState({confirm_password: confirm_password});
     }
-
-
-    // handleSubmit(e) {
-    //     e.preventDefault();
-    //     if (this.state.password !== this.state.confirm_password) {
-    //         console.log('check')
-    //         this.setState({error: "PASSWORDS DO NOT MATCH"})
-    //     }
-
-    //     this.setState({
-    //         error: null
-    //     });
-       
-    //     AuthApiService.postUser({
-    //         user_name: this.state.user_name,
-    //         user_email: this.state.user_email,
-    //         password: this.state.password
-    //     })
-    //     .then(res=>{
-    //         if(!res.ok){
-    //             throw res
-    //         }
-    //         return res.json()
-    //     })
-    //     .then(data=>
-    //         this.props.routeProps.history.push("/login")
-    //     )
-    //     .catch(res => {
-    //         this.setState({
-    //           error: res.error
-    //         });
-    //       });
-    // }
-
 
     handleSubmit(e) {
         console.log('submit')
@@ -108,34 +74,7 @@ class Register extends Component {
         })
     }
 
-    // addUser() {
-    //     console.log('add')
-
-    //     AuthApiService.postUser({
-    //         user_name: this.state.user_name,
-    //         user_email: this.state.user_email,
-    //         password: this.state.password
-    //     })
-    //     .then(res=>{
-    //         if(!res.ok){
-    //             throw res
-    //         }
-    //         return res.json()
-    //     })
-    //     .then(data=>
-    //         console.log(data)
-    //         // this.props.routeProps.history.push("/login")
-    //         )
-    //         .catch(res => {
-    //         this.setState({
-    //             error: res.error
-    //         });
-    //     });
-    // }
-        
-
     render() {
-        // console.log(this.state)
         const { error } = this.state;
         return (
             <div className="login">   
