@@ -1,38 +1,84 @@
-import React from 'react';
-import {XYPlot, XAxis, YAxis, VerticalGridLines, HorizontalGridLines, LineSeries} from 'react-vis';
+import React from 'react'
+import {
+    XYPlot,
+    XAxis,
+    YAxis,
+    VerticalGridLines,
+    HorizontalGridLines,
+    LineSeries,
+} from 'react-vis'
+import { validateData } from './GraphUtils/csvUtils'
+const { API_ENDPOINT } = require('../config')
 
-const LineGraph = (props) => {
+export default class LineGraph extends React.Component {
+    constructor(props) {
+        super(props)
+        this.state = {
+            tableId: this.props.tableId,
+            userId: localStorage.getItem('userId'),
+            tableName: 'NA',
+            dataResult: [],
+        }
+    }
 
-    const dataArr = props.data.map((d)=> {
-        return {x: d.year + '/' + d.quarter, 
-        y: parseFloat(d.count/1000)}
-    });
+    updateState = (data, table) => {
+        this.setState({
+            dataResult: validateData(data),
+            tableName: table,
+        })
+    }
+    componentDidMount = () => {
+        fetch(`${API_ENDPOINT}/data/${this.state.tableId}`, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                user_id: this.state.userId,
+            },
+        })
+            .then(res => {
+                if (!res.ok) {
+                    return res.json().then(error => {
+                        throw error
+                    })
+                }
+                return res.json()
+            })
+            .then(res => {
+                this.updateState(res.data, res.table_name)
+            })
+            .catch(error => {
+                console.error(error)
+            })
+    }
 
-    // KEY USER PARAMETERS
-    // stroke
-    // strokeWidth
+    render() {
+        return (
+            <div>
+                <h3>Project: {this.state.tableName}</h3>
 
-
-    return (
-        <XYPlot
-            xType="ordinal"
-            width={1000}
-            height={500}>
-            <VerticalGridLines />
-            <HorizontalGridLines />
-            <XAxis title="Period of time(year and quarter)" />
-            <YAxis title="Number of pull requests (thousands)" />
-                <LineSeries
-                    data={dataArr}
-                    style={{
-                        stroke: 'red', 
-                        strokeWidth: 3,
-                        fill: 'none'
-                        }}                   
-                        
-                        />
-        </XYPlot>
-    );
+                <XYPlot height={300} width={375} margin={{ left: 75, bottom: 75}} >
+                    <VerticalGridLines />
+                    <HorizontalGridLines />
+                    <XAxis
+                        style={{
+                            line: {stroke: 'black'},
+                            ticks: { stroke: 'black' },
+                        }}
+                        tickLabelAngle={-45}
+                    />
+                    <YAxis
+                        style={{
+                            line: {stroke: 'black'},
+                            ticks: { stroke: 'black' },
+                        }}
+                        tickLabelAngle={-45}
+                    />
+                    <LineSeries
+                        data={this.state.dataResult}
+                        style={{ fill: 'none' }}
+                    />
+                </XYPlot>
+            </div>
+        )
+    }
 }
-
-export default LineGraph;

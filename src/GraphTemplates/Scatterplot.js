@@ -1,39 +1,84 @@
-import React from 'react';
-
+import React from 'react'
 import {
-  XYPlot,
-  XAxis,
-  YAxis,
-  VerticalGridLines,
-  HorizontalGridLines,
-  MarkSeries
-} from 'react-vis';
+    XYPlot,
+    XAxis,
+    YAxis,
+    VerticalGridLines,
+    HorizontalGridLines,
+    MarkSeries,
+} from 'react-vis'
+import { validateData } from './GraphUtils/csvUtils'
+const { API_ENDPOINT } = require('../config')
 
-export default class Scatterplot extends React.Component(props) {
-  render() {
-    const dataPoints = [
-      {x: 1, y: 10, size: 30},
-      {x: 1.7, y: 12, size: 10},
-      {x: 2, y: 5, size: 1},
-      {x: 3, y: 15, size: 12},
-      {x: 2.5, y: 7, size: 4}
-    ]
+export default class LineGraph extends React.Component {
+    constructor(props) {
+        super(props)
+        this.state = {
+            tableId: this.props.tableId,
+            userId: localStorage.getItem('userId'),
+            tableName: 'NA',
+            dataResult: [],
+        }
+    }
 
-    return (
-      <div>
-      <XYPlot width={300} height={300}>
-        <VerticalGridLines />
-        <HorizontalGridLines />
-        <XAxis />
-        <YAxis />
-        <MarkSeries
-          className="mark-series-example"
-          strokeWidth={2}
-          opacity="0.8"
-          sizeRange={[5, 15]}
-          data={dataPoints}
-        />
-      </XYPlot>
-      </div>
-    )  
+    updateState = (data, table) => {
+        this.setState({
+            dataResult: validateData(data),
+            tableName: table,
+        })
+    }
+    componentDidMount = () => {
+        fetch(`${API_ENDPOINT}/data/${this.state.tableId}`, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                user_id: this.state.userId,
+            },
+        })
+            .then(res => {
+                if (!res.ok) {
+                    return res.json().then(error => {
+                        throw error
+                    })
+                }
+                return res.json()
+            })
+            .then(res => {
+                this.updateState(res.data, res.table_name)
+            })
+            .catch(error => {
+                console.error(error)
+            })
+    }
+
+    render() {
+        return (
+            <div>
+                <h3>Scatterplot Project: {this.state.tableName}</h3>
+
+                <XYPlot height={300} width={375} margin={{ left: 75, bottom: 75}} >
+                    <VerticalGridLines />
+                    <HorizontalGridLines />
+                    <XAxis
+                        style={{
+                            line: { stroke: 'black' },
+                            ticks: { stroke: 'black' },
+                        }}
+                        tickLabelAngle={-45}
+                    />
+                    <YAxis
+                        style={{
+                            line: { stroke: 'black' },
+                            ticks: { stroke: 'black' },
+                        }}
+                        tickLabelAngle={-45}
+                    />
+                    <MarkSeries
+                        data={this.state.dataResult}
+                        style={{ fill: 'none' }}
+                    />
+                </XYPlot>
+            </div>
+        )
+    }
 }

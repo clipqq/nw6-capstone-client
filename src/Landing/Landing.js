@@ -4,6 +4,7 @@ import upload from '../img/upload.png'
 import graph from '../img/graph.png'
 import { IconContext } from "react-icons";
 import { FaLongArrowAltRight } from 'react-icons/fa'
+
 import './Landing.css'
 
 class Landing extends Component {
@@ -26,8 +27,12 @@ class Landing extends Component {
                 <p>Select your graph settings.</p>
                 <p>Discover the story within your data.</p>
                 <p>Share what you have discovered.</p>
-                <Link to={'/graph'} >
-                    <button> Get Started</button>
+                <h2>Demo User:</h2>
+                <p>Username: demo</p>
+                <p>Password: Password!1</p>
+                <p>Sample CVS File: <a href='https://drive.google.com/uc?export=download&id=1POaXlsESvDLaWX1Z2BZl7kCwCx6L-fWp' download='demo.csv'>Download</a></p>
+                <Link to={'/login'} >
+                    <button className='bigBtn'> Get Started</button>
                 </Link>
             </div>
         );
