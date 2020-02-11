@@ -51,7 +51,7 @@ class AddGraph extends Component {
                 'content-type': 'application/json',
                 'user_id': localStorage.getItem("userId"),
                 'table_name': title,
-                'table_type': type
+                // 'table_type': type
             },
         })
             .then(res => {

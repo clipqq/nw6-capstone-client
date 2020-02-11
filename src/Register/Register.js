@@ -1,8 +1,8 @@
 import './Register.css'
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import AuthApiService from '../services/auth-api-service';
 const { API_ENDPOINT } = require('../config')
-
 class Register extends Component {
     constructor(props) {
         super(props);
@@ -15,7 +15,7 @@ class Register extends Component {
     }
     state = {
         error: null
-      };
+    };
     updateEmail(user_email) {
         this.setState({user_email: user_email});
     }
@@ -31,28 +31,13 @@ class Register extends Component {
 
     handleSubmit(e) {
         e.preventDefault();
-        if (this.state.password !== this.state.confirm_password) {
-            this.setState({error: "PASSWORDS DO NOT MATCH"})
-        } else {
-            this.setState({
-                error: null
-            });
-            this.addUser()
-        }
-    }
-
-    addUser() {
-        const user = {
+        this.setState({
+            error: null
+        });
+        AuthApiService.postUser({
             user_name: this.state.user_name,
             user_email: this.state.user_email,
             password: this.state.password
-        }
-        fetch(`${API_ENDPOINT}user`, {
-            method: 'POST',
-            body: JSON.stringify(user),
-            headers: {
-                'content-type': 'application/json'
-            }
         })
         .then(res=>{
             if(!res.ok){
@@ -60,16 +45,15 @@ class Register extends Component {
             }
             return res.json()
         })
-        .then(data => { 
-            this.props.routeProps.history.push('/login')
-        })
-        .catch(err => {
-            if(err.status===400){
-                this.setState({error: "INCORRECT USERNAME OR PASSWORD"})
-            }
-        })
+        .then(data=>
+            this.props.routeProps.history.push("/login")
+        )
+        .catch(res => {
+            this.setState({
+            error: res.error
+            });
+        });
     }
-
     render() {
         const { error } = this.state;
         return (
@@ -83,8 +67,6 @@ class Register extends Component {
                     <input required type="name" name="name" id="name" onChange={e => this.updateName(e.target.value)}/>
                     <label htmlFor="password">Password</label>
                     <input required type="password" name="password" id="password" onChange={e => this.updatePassword(e.target.value)}/>
-                    <label htmlFor="confirm_password">Confirm Password</label>
-                    <input required type="password" name="confirm_password" id="confirm_password" onChange={e => this.updateConfirmPassword(e.target.value)}/>
                     <div className="buttons">
                         <button type="submit">
                             Register
