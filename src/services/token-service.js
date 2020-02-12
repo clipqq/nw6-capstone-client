@@ -21,6 +21,7 @@ const TokenService = {
     // }, 1500 * 1000)
   },
   getAuthToken() {
+    console.log('TOKEN', config.TOKEN_KEY)
     return window.sessionStorage.getItem(config.TOKEN_KEY)
   },
   clearAuthToken() {

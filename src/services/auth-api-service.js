@@ -13,6 +13,8 @@ const AuthApiService = {
             !res.ok ? res.json().then(e => Promise.reject(e)) : res.json(),
         )
     },
+
+//// ENDPOINTS not ours
     postUser(user) {
         return fetch(`${config.API_ENDPOINT}/user`, {
             method: 'POST',
