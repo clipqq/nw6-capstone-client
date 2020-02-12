@@ -15,7 +15,7 @@ class Register extends Component {
     }
     state = {
         error: null
-      };
+    };
     updateEmail(user_email) {
         this.setState({user_email: user_email});
     }
