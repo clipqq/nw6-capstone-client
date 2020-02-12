@@ -29,7 +29,7 @@ class Login extends Component {
     }
 
     loginUser(user) {
-        fetch(`${API_ENDPOINT}auth/login`, {
+        fetch(`${API_ENDPOINT}/auth/login`, {
             method: 'POST',
             body: user,
             headers: {
