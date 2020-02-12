@@ -81,7 +81,11 @@ class GraphList extends Component {
     }
 
     componentDidMount() {
-        this.getUserGraphs()
+        if (!localStorage.getItem('userId')) {
+            this.props.routeProps.history.push('/')
+        } else {
+            this.getUserGraphs()
+        }
     }
     
     render() {  

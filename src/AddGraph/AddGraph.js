@@ -23,13 +23,8 @@ class AddGraph extends Component {
         this.setState({ type: type })
     }
 
-<<<<<<< HEAD
-    submit() {
-        // e.preventDefault();
-=======
     handleSubmit(e) {
         e.preventDefault()
->>>>>>> 3c80e6d33b6c4e8345a0f55b624825e53753d432
         this.addGraph(this.state.data, this.state.title, this.state.type)
     }
 
@@ -47,11 +42,7 @@ class AddGraph extends Component {
     }
 
     addGraph(data, title, type) {
-<<<<<<< HEAD
-        fetch(`${API_ENDPOINT}data`, {
-=======
         fetch(`${API_ENDPOINT}/data`, {
->>>>>>> 3c80e6d33b6c4e8345a0f55b624825e53753d432
             method: 'POST',
             body: data,
             headers: {
@@ -75,6 +66,12 @@ class AddGraph extends Component {
             .catch(error => {
                 console.error(error)
             })
+    }
+
+    componentDidMount() {
+        if (!localStorage.getItem('userId')) {
+            this.props.routeProps.history.push('/')
+        }
     }
 
     render() {
@@ -113,14 +110,10 @@ class AddGraph extends Component {
                             <button className="btn">Upload</button>
                         </ReactFileReader>
                         <div className="buttons">
-<<<<<<< HEAD
-                            <button type="submit" onClick={this.submit} >
-=======
                             <button
                                 type="submit"
                                 onClick={e => this.handleSubmit(e)}
                             >
->>>>>>> 3c80e6d33b6c4e8345a0f55b624825e53753d432
                                 Create
                             </button>
                             <Link to="/graph">
