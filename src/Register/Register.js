@@ -38,6 +38,13 @@ class Register extends Component {
             user_name: this.state.user_name,
             user_email: this.state.user_email,
             password: this.state.password
+        }
+        fetch(`${API_ENDPOINT}/user`, {
+            method: 'POST',
+            body: JSON.stringify(user),
+            headers: {
+                'content-type': 'application/json'
+            }
         })
         .then(res=>{
             if(!res.ok){

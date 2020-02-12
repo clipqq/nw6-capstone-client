@@ -68,7 +68,7 @@ class Login extends Component {
                     <input required type="password" name="password" id="password" onChange={e => this.updatePassword(e.target.value)}/>
 
                     <div className="buttons">
-                        <button  onClick={this.login} type="submit">
+                        <button>
                             Login
                         </button>
                         <Link to='/'>
