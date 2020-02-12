@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import ReactFileReader from 'react-file-reader'
+import config from '../config'
 import './AddGraph.css'
 const csv = require('csvtojson')
 const { API_ENDPOINT } = require('../config')
@@ -28,9 +29,9 @@ class AddGraph extends Component {
         this.addGraph(this.state.data, this.state.title, this.state.type)
     }
 
-    handleFiles = async files => {
-        let reader = new FileReader()
-        reader.onload = function(e) {
+    handleFiles = async (files) => {
+        let reader = new FileReader();
+          reader.onload = function(e) {
             const csvStr = reader.result
             csv()
                 .fromString(csvStr)
@@ -41,15 +42,16 @@ class AddGraph extends Component {
         reader.readAsText(files[0])
     }
 
-    addGraph(data, title, type) {
-        fetch(`${API_ENDPOINT}/data`, {
+    addGraph(data, title, cb) {
+        console.log('add')
+        fetch(`${API_ENDPOINT}data`, {
             method: 'POST',
             body: data,
             headers: {
                 'content-type': 'application/json',
                 'user_id': localStorage.getItem("userId"),
                 'table_name': title,
-                // 'table_type': type
+                'table_type': type
             },
         })
             .then(res => {
@@ -87,10 +89,7 @@ class AddGraph extends Component {
                             <button className='btn'>Upload</button>
                         </ReactFileReader>
                         <div className="buttons">
-                            <button
-                                type="submit"
-                                onClick={e => this.handleSubmit(e)}
-                            >
+                            <button type="submit" onClick={this.addGraph} >
                                 Create
                             </button>
                             <Link to="/graph">
@@ -104,6 +103,4 @@ class AddGraph extends Component {
     }
 }
 
-export default AddGraph
-
-// onClick={e => this.handleSubmit(e)}
+export default AddGraph;
