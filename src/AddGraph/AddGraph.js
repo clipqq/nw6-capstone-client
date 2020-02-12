@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import ReactFileReader from 'react-file-reader'
-import config from '../config'
 import './AddGraph.css'
 const csv = require('csvtojson')
 const { API_ENDPOINT } = require('../config')
@@ -12,7 +11,7 @@ class AddGraph extends Component {
         this.state = {
             title: '',
             type: 'line',
-            data: []
+            data: [],
         }
     }
 
@@ -21,17 +20,17 @@ class AddGraph extends Component {
     }
 
     updateType(type) {
-        this.setState({type: type});
+        this.setState({ type: type })
     }
 
     handleSubmit(e) {
-        e.preventDefault();
+        e.preventDefault()
         this.addGraph(this.state.data, this.state.title, this.state.type)
     }
 
-    handleFiles = async (files) => {
-        let reader = new FileReader();
-          reader.onload = function(e) {
+    handleFiles = async files => {
+        let reader = new FileReader()
+        reader.onload = function(e) {
             const csvStr = reader.result
             csv()
                 .fromString(csvStr)
@@ -42,16 +41,15 @@ class AddGraph extends Component {
         reader.readAsText(files[0])
     }
 
-    addGraph(data, title, cb) {
-        console.log('add')
-        fetch(`${API_ENDPOINT}data`, {
+    addGraph(data, title, type) {
+        fetch(`${API_ENDPOINT}/data`, {
             method: 'POST',
             body: data,
             headers: {
                 'content-type': 'application/json',
-                'user_id': localStorage.getItem("userId"),
-                'table_name': title,
-                'table_type': type
+                user_id: localStorage.getItem('userId'),
+                table_name: title,
+                table_type: type,
             },
         })
             .then(res => {
@@ -77,19 +75,39 @@ class AddGraph extends Component {
                 <div className="login">
                     <div className="form-group">
                         <label htmlFor="title">Title:</label>
-                        <input required type="title" name="title" id="title" onChange={e => this.updateTitle(e.target.value)}/>
+                        <input
+                            required
+                            type="title"
+                            name="title"
+                            id="title"
+                            onChange={e => this.updateTitle(e.target.value)}
+                        />
                         <label htmlFor="type">Type:</label>
-                        <select required type="type" name="type" id="type" onChange={e => this.updateType(e.target.value)}>
-                            <option defaultValue value="line">Line</option>
+                        <select
+                            required
+                            type="type"
+                            name="type"
+                            id="type"
+                            onChange={e => this.updateType(e.target.value)}
+                        >
+                            <option defaultValue value="line">
+                                Line
+                            </option>
                             <option value="bar">Bar</option>
                             <option value="scatter">Scatter</option>
                         </select>
                         <label htmlFor="file">File:</label>
-                        <ReactFileReader handleFiles={this.handleFiles} fileTypes={'.csv'}>
-                            <button className='btn'>Upload</button>
+                        <ReactFileReader
+                            handleFiles={this.handleFiles}
+                            fileTypes={'.csv'}
+                        >
+                            <button className="btn">Upload</button>
                         </ReactFileReader>
                         <div className="buttons">
-                            <button type="submit" onClick={this.addGraph} >
+                            <button
+                                type="submit"
+                                onClick={e => this.handleSubmit(e)}
+                            >
                                 Create
                             </button>
                             <Link to="/graph">
@@ -103,4 +121,4 @@ class AddGraph extends Component {
     }
 }
 
-export default AddGraph;
+export default AddGraph
