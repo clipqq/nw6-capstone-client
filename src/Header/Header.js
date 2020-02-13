@@ -38,7 +38,7 @@ class Header extends Component {
     render() {
         return (
             <>     
-                <Link to={'/graph'} className="logo" >  
+                <Link to={'/'} className="logo" >  
                     <h1>WTDD</h1>
                 </Link> 
                 {this.isUserLoggedIn()}
