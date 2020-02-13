@@ -13,6 +13,7 @@ class Graph extends Component {
         }
     }
 
+
     render() {
         if(this.state.tableType === 'line') {
             return (

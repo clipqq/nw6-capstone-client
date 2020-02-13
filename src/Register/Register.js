@@ -70,6 +70,12 @@ class Register extends Component {
         })
     }
 
+    componentDidMount() {
+        if (localStorage.getItem('userId')) {
+            this.props.routeProps.history.push('/graph')
+        } 
+    }
+
     render() {
         const { error } = this.state;
         return (

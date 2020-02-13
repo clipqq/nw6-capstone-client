@@ -31,7 +31,7 @@ class Landing extends Component {
                 <h2>Demo User:</h2>
                 <p>Username: demo</p>
                 <p>Password: Password!1</p>
-                <p>Sample CVS File: <a href='https://drive.google.com/uc?export=download&id=1POaXlsESvDLaWX1Z2BZl7kCwCx6L-fWp' download='demo.csv'>Download</a></p>
+                <p>Sample CSV File: <a href='https://drive.google.com/uc?export=download&id=1POaXlsESvDLaWX1Z2BZl7kCwCx6L-fWp' download='demo.csv'>Download</a></p>
                 <Link to={'/login'} >
                     <button className='bigBtn'> Get Started</button>
                 </Link>
