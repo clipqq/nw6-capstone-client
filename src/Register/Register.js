@@ -91,6 +91,7 @@ class Register extends Component {
                     <input required type="password" name="password" id="password" onChange={e => this.updatePassword(e.target.value)}/>
                     <label htmlFor="confirm_password">Confirm Password</label>
                     <input required type="password" name="confirm_password" id="confirm_password" onChange={e => this.updateConfirmPassword(e.target.value)}/>
+                    <p className='pass'>*Password must be 8 characters long and contain atleast 1 upper case, 1 lower case, 1 number and 1 special character.</p>
                     <div className="buttons">
                         <button type="submit">
                             Register

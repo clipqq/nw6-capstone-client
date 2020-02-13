@@ -2,3 +2,14 @@
     font-weight: 600; 
     color: red;
 }
+
+.pass {
+    margin: 0;
+    font-size: 8px;
+}
+
+@media screen and (min-width: 1024px) {
+    .pass {
+        font-size: 12px;
+    }
+}

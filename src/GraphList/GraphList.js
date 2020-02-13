@@ -56,7 +56,7 @@ class GraphList extends Component {
     }
 
     getUserGraphs(){
-        fetch(`${API_ENDPOINT}data`, {
+        fetch(`${API_ENDPOINT}/data`, {
             method: 'GET',
             headers: {
                 'content-type': 'application/json', 
